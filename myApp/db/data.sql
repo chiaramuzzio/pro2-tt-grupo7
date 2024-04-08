@@ -14,6 +14,7 @@ CREATE TABLE usuarios (
 	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt			timestamp		null
 );
+
 CREATE TABLE productos (
 /* 	nombreColumna 		tipoDato 		Restricciones */
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -27,6 +28,7 @@ CREATE TABLE productos (
     
     FOREIGN KEY (cliente_id) REFERENCES usuarios(id)
 );
+
 CREATE TABLE comentarios (
 /* 	nombreColumna 		tipoDato 		Restricciones */
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -39,5 +41,19 @@ CREATE TABLE comentarios (
 
     FOREIGN KEY (cliente_id) REFERENCES usuarios(id),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
-
 );
+
+insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
+values (default, 'carlosperez@gmail.com', 'carlosperez', 'carlitos10', "1960/10/10", 12345678, "carlitos.png" );
+
+insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
+values (default, 'manujurel@gmail.com', 'manujurel', 'carlitos10', "1961/10/10", 12345671, "manu.png");
+
+insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
+values (default, 'franciscot@gmail.com', 'pancho_torres', 'carlitos10', '1962/10/10', 12345672, "pancho.png");
+
+insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
+values (default, 'felitromel@gmail.com', 'felitromel', 'carlitos10', '1963/10/10', 12345673, 'feli.png');
+
+insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
+values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png')
