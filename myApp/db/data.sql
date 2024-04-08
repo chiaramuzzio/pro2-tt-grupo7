@@ -26,8 +26,7 @@ CREATE TABLE productos (
     deletedAt			timestamp		null,
     
     FOREIGN KEY (cliente_id) REFERENCES usuarios(id)
-)
-
+);
 CREATE TABLE comentarios (
 /* 	nombreColumna 		tipoDato 		Restricciones */
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -37,5 +36,8 @@ CREATE TABLE comentarios (
     createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
 	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt			timestamp		null,
-);
 
+    FOREIGN KEY (cliente_id) REFERENCES usuarios(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+
+);
