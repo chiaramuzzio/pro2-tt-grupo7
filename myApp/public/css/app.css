@@ -4,8 +4,8 @@
 
 /*====== Variables ======*/
 :root {
-  --yellow: #EAC926;
-  --dark-blue: #03264C;
+  --yellow: #03264C;
+  --dark-blue: #2237a0;
   --light-blue: #1259c3;
   --gray: #666666;
   --light-gray: #ebebeb;
@@ -13,6 +13,9 @@
   --base-font-family: 'Roboto', sans-serif
 }
 
+/* .logoNav{
+  size: ;
+} */
 
 /*====== Basics ======*/
 * {
@@ -69,6 +72,8 @@ hr {
 .main-header {
   padding: 15px 0;
   background-color: var(--yellow);
+  color: white;
+  font-weight: bolder;
 }
 
 .main-header_home-link,
@@ -154,7 +159,7 @@ hr {
 
 /*====== Banner ======*/
 .banner {
-  background-image: url(/images/img-home-banner.jpg);
+  background-image: url(/images/users/banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
