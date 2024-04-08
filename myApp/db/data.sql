@@ -26,7 +26,16 @@ CREATE TABLE productos (
     deletedAt			timestamp		null,
     
     FOREIGN KEY (cliente_id) REFERENCES usuarios(id)
-
 )
 
+CREATE TABLE comentarios (
+/* 	nombreColumna 		tipoDato 		Restricciones */
+    id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    producto_id			INT				UNSIGNED,
+    cliente_id			INT				UNSIGNED,
+    comentario 			VARCHAR(250) 	NOT NULL,
+    createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
+	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deletedAt			timestamp		null,
+);
 
