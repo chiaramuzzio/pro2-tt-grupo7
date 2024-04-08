@@ -476,6 +476,10 @@ textarea.form-input {
   color: #fff;
 }
 
+.fotoIndex{
+  height: 350px;
+}
+
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
