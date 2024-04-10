@@ -2,7 +2,9 @@ create schema listaUsuarios;
 use listaUsuarios;
 
 CREATE TABLE usuarios (
-/* 	nombreColumna 		tipoDato 		Restricciones */
+
+/* 	Nombre de Columna 	Tipo de Dato 	Restricciones */
+
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     mail 				VARCHAR(250) 	NOT NULL,
     usuario 			VARCHAR(250) 	NOT NULL,
@@ -16,7 +18,9 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE productos (
-/* 	nombreColumna 		tipoDato 		Restricciones */
+
+/* 	Nombre de Columna   Tipo de Dato 	Restricciones */
+
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     cliente_id			INT				UNSIGNED,
     nombreProd 			VARCHAR(250) 	NOT NULL,
@@ -30,7 +34,9 @@ CREATE TABLE productos (
 );
 
 CREATE TABLE comentarios (
-/* 	nombreColumna 		tipoDato 		Restricciones */
+
+/* 	Nombre de Columna 	Tipo de Dato 	Restricciones */
+
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     producto_id			INT				UNSIGNED,
     cliente_id			INT				UNSIGNED,

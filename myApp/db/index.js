@@ -7,6 +7,7 @@ const db = {
         dni: 46291301,
         foto: "https://via.placeholder.com/150"
     },
+
     productos: [
         {
            imagen: "https://http2.mlstatic.com/D_NQ_NP_650583-MLU74378755634_022024-V.webp",
@@ -72,6 +73,7 @@ const db = {
                 }
             ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_2X_722940-MLA52573759857_112022-F.webp",
             nombre:  "Crimen y Castigo",
@@ -104,6 +106,7 @@ const db = {
                 }
             ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_849364-MLU72972407903_112023-V.webp",
             nombre:  "Alas de sangre",
@@ -136,6 +139,7 @@ const db = {
                 }
                ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_673885-MLA54040457764_022023-V.webp",
             nombre:  "Hábitos Atómicos",
@@ -168,6 +172,7 @@ const db = {
                 }
                ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_655528-MLU74053078727_012024-V.webp",
             nombre:  "Destroza este diario",
@@ -200,6 +205,7 @@ const db = {
                 }
                ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_701372-MLU71679031011_092023-V.webp",
             nombre:  "Artificial",
@@ -232,6 +238,7 @@ const db = {
                 }
                ]
          },
+
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_858091-MLU72548176978_112023-V.webp",
             nombre:  "Zensorial",
@@ -264,6 +271,7 @@ const db = {
                 }
             ]
          },
+         
          {
             imagen: "https://http2.mlstatic.com/D_NQ_NP_843453-MLU72522559580_102023-V.webp",
             nombre:  "Piense y hágase rico",
