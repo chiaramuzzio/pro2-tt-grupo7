@@ -17,18 +17,20 @@
 			</div>
 			<!-- Muestra los "ultimos" productos -->
 			<h2 class="col-12"></h2>
-			<form action="/product/add" method="get">
-				<label for="imagen">Imagen:</label><br>
-				<input type="file" id="imagen" name="imagen" required><br>
+			<form class="formPropio" action="/product/add" method="get">
+				<label class="form-label" for="imagen">Imagen</label><br>
+				<input class="form-input file-select" type="file" id="imagen" name="imagen" required><br>
 			 
-				<label for="nombre">Nombre del producto:</label><br>
-				<input type="text" id="nombre" name="nombre" required><br>
+				<label class="form-label"for="nombre">Nombre del producto</label><br>
+				<input class="form-input" type="text" id="nombre" name="nombre" required><br>
 			 
-				<label for="descripcion">Descripción:</label><br>
-				<textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
+				<label class="form-label" for="descripcion">Descripción</label><br>
+				<textarea class="form-input" id="descripcion" name="descripcion" rows="4" required></textarea><br>
 			 
-				<input type="submit" value="Agregar producto">
+				<input class="buy-now-button botonRegister" type="submit" value="Agregar producto">
 			</form>
+		</div>
+	</div>
 			
 
 	<!-- footer -->
