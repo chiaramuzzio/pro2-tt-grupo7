@@ -65,6 +65,36 @@ insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDoc
 values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png');
 
 
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro1', 'libro1.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro2', 'libro2.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro3', 'libro3.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro4', 'libro4.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro5', 'libro5.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro6', 'libro6.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro7', 'libro7.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro8', 'libro8.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro9', 'libro9.png', 'lorem ipsum');
+
+insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
+values (default, cliente_id, 'libro10', 'libro10.png', 'lorem ipsum');
+
 
 insert into comentarios (id, producto_id, cliente_id, comentario)
 values (default, producto_id, cliente_id, 'comentario 1');
