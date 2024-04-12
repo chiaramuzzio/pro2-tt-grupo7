@@ -62,4 +62,15 @@ insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDoc
 values (default, 'felitromel@gmail.com', 'felitromel', 'carlitos10', '1963/10/10', 12345673, 'feli.png');
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png')
+values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png');
+
+
+
+insert into comentarios (id, producto_id, cliente_id, comentario)
+values (default, producto_id, cliente_id, 'comentario 1');
+
+insert into comentarios (id, producto_id, cliente_id, comentario)
+values (default, producto_id, cliente_id, 'comentario 2');
+
+insert into comentarios (id, producto_id, cliente_id, comentario)
+values (default, producto_id, cliente_id, 'comentario 3');
