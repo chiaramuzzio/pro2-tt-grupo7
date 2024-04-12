@@ -49,6 +49,7 @@ CREATE TABLE comentarios (
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
+/*SQL usuarios*/
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
 values (default, 'carlosperez@gmail.com', 'carlosperez', 'carlitos10', "1960/10/10", 12345678, "carlitos.png" );
 
@@ -64,7 +65,7 @@ values (default, 'felitromel@gmail.com', 'felitromel', 'carlitos10', '1963/10/10
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
 values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png');
 
-
+/*SQL productos*/
 insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
 values (default, cliente_id, 'libro1', 'libro1.png', 'lorem ipsum');
 
@@ -95,7 +96,7 @@ values (default, cliente_id, 'libro9', 'libro9.png', 'lorem ipsum');
 insert into productos (id, cliente_id, nombreProd, imagenProd, descripcion)
 values (default, cliente_id, 'libro10', 'libro10.png', 'lorem ipsum');
 
-
+/*SQL comentarios*/
 insert into comentarios (id, producto_id, cliente_id, comentario)
 values (default, producto_id, cliente_id, 'comentario 1');
 
