@@ -1,8 +1,10 @@
-/*====== Fonts ======*/
+  /*====== Fonts ======*/
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 
 
-/*====== Variables ======*/
+  /*====== Variables ======*/
+
 :root {
   --yellow: #03264C;
   --dark-blue: #2237a0;
@@ -17,7 +19,8 @@
   size: ;
 } */
 
-/*====== Basics ======*/
+  /*====== Basics ======*/
+
 * {
   box-sizing: border-box;
 }
@@ -72,7 +75,8 @@ h1, h2, h3{
   font-weight: bolder;
 }
 
-/*====== Main Header ======*/
+  /*====== Main Header ======*/
+
 .main-header {
   padding: 15px 0;
   background-color: var(--yellow);
@@ -119,7 +123,8 @@ h1, h2, h3{
 }
 
 
-/*====== Main Navbar ======*/
+  /*====== Main Navbar ======*/
+
 .btn-toggle-navbar {
   background-color: var(--dark-blue);
   color: #ffffff;
@@ -164,7 +169,8 @@ h1, h2, h3{
   display: none;
 }
 
-/*====== Banner ======*/
+  /*====== Banner ======*/
+
 .banner {
   background-image: url(/images/users/banner.png);
   background-repeat: no-repeat;
@@ -174,7 +180,8 @@ h1, h2, h3{
 }
 
 
-/*====== Products ======*/
+  /*====== Products ======*/
+
 .products-wrapper {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -269,7 +276,8 @@ h1, h2, h3{
   box-shadow: 0 0 5px var(--green);
 }
 
-/*====== Footer ======*/
+  /*====== Footer ======*/
+
 .main-footer {
   background-color: #ffffff;
   padding: 20px 0;
@@ -309,7 +317,8 @@ h1, h2, h3{
 }
 
 
-/*====== Product Detail ======*/
+  /*====== Product Detail ======*/
+
 .product-detail {
   background-color: #ffffff;
   border-radius: 8px;
@@ -325,7 +334,7 @@ h1, h2, h3{
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
   padding: 15px;
-  /* height: 100%; */
+  /*  height: 100% */
 }
 
 .product-detail-title {
@@ -441,7 +450,8 @@ h1, h2, h3{
   font-size: 1.7em;
 }
 
-/*====== Formularios ======*/
+  /*====== Formularios ======*/
+
 .form-label {
   display: inline-block;
   font-size: 1.6em;
@@ -519,7 +529,8 @@ textarea.form-input {
   bottom: 0;
 }
 
-/*====== Profile ======*/
+  /*====== Profile ======*/
+
 .info-usuario{
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px;
@@ -547,7 +558,8 @@ textarea.form-input {
 }
 
 
-/*====== Media-Queries ======*/
+  /*====== Media-Queries ======*/
+
 @media (min-width: 768px) {
   .main-header_credit-link {
     margin-top: 0;
