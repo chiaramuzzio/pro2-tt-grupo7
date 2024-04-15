@@ -280,8 +280,10 @@ h1, h2, h3{
 
 .main-footer {
   background-color: #ffffff;
-  padding: 20px 0;
+  padding-top: 20px;
   margin-top: 80px;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 .footer-data {
@@ -316,6 +318,19 @@ h1, h2, h3{
   padding: 15px 0;
 }
 
+.nombres{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--yellow);
+  width: 100%;
+}
+
+.nombresTexto{
+    color: #ffffff;
+    font-size: large;
+    font-weight: bolder;
+}
 
   /*====== Product Detail ======*/
 
@@ -602,7 +617,7 @@ textarea.form-input {
   }
 
   .main-footer {
-    padding: 40px 0;
+    padding-top: 40px;
   }
 
   .footer-data {
