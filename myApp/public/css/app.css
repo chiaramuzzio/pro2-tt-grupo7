@@ -326,6 +326,10 @@ h1, h2, h3{
   width: 100%;
 }
 
+.row{
+  margin:0;
+}
+
 .nombresTexto{
     color: #ffffff;
     font-size: large;
