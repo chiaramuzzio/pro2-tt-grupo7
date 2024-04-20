@@ -5,7 +5,7 @@ const db = {
         contrasenia: "123456",
         bday: "2005-09-19",
         dni: 46291301,
-        foto: "https://via.placeholder.com/150"
+        foto: "https://i.pinimg.com/736x/a3/ea/87/a3ea878f893e55ad8a0c1b59258885ee.jpg"
     },
 
     productos: [
