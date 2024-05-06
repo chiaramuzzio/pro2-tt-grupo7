@@ -1,13 +1,13 @@
-const db = require('../db/index');
+const db = require('../database/models');
 
 
 const indexController = {
     index: function(req, res) {
-        res.render('index', {title: "Home", productos: db.productos});
+        res.render('index', {title: "Home", productos: null});
     },
    
     search: function(req, res) {
-        res.render('search-results', {title: "Search Results", productos: db.productos});
+        res.render('search-results', {title: "Search Results", productos: null});
     }
 }
 

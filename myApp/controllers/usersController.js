@@ -1,9 +1,18 @@
-const db = require('../db/index');
+const db = require('../database/models');
 
 
 const usersController = {
     login: function(req, res, next) {
-        res.render('login', {title: "Login"});
+
+        db.Usuario.findAll()
+        .then(function(results){
+            return res.send(results)
+            return res.render('login',{title:"Login", })
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+        // res.render('login', {title: "Login"});
     },
 
 
@@ -13,12 +22,12 @@ const usersController = {
 
 
     profile: function(req, res, next) {
-        res.render('profile', {title: 'Profile', usuario: db.usuario, productos: db.productos});
+        res.render('profile', {title: 'Profile', usuario: null, productos: null});
     },
 
 
     usersEdit: function(req, res, next) {
-        res.render('profile-edit', {title: 'Profile Edit', usuario: db.usuario});
+        res.render('profile-edit', {title: 'Profile Edit', usuario: null});
     }
 }
 
