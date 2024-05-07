@@ -12,7 +12,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= productos[0].nombre%></h2> 
+			<h2 class="products-title"><%= productos.nombreProd%></h2> 
 			<p class="product-detail-description">
 				<a href="/product/add">Editar</a>
 			</p>
@@ -20,22 +20,12 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src=<%= productos[0].imagen%> alt="" class="product-detail-img">
-					<p class="product-detail-description"><%= productos[0].descripcion %></p>
+					<img src=<%= productos.imagenProd%> alt="" class="product-detail-img">
+					<p class="product-detail-description"><%= productos.descripcion %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<%for (let index = 0; index < productos[0].comentarios.length; index++) {%>
-							<article>
-								<img src=<%=  productos[0].comentarios[index].pfp%> alt="">
-								<div class="data">
-									<p class="user">
-									<strong> <a href="/users/profile"><%=productos[0].comentarios[index].user%></a> </strong>
-									<%= productos[0].comentarios[index].textoComentario%></p>
-								</div>
-							</article>
-						<%}%>
-
+						<!-- COMPLETAR CUANDO SE HAGA EL MODELO DE COMENTARIOS, AGREGARLO TAMB EN EL CONTROLLER -->
 					</section>
 					<form class="form" action="/product" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">

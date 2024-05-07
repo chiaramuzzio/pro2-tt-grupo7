@@ -1,17 +1,26 @@
 const db = require('../database/models');
 
-
 const productController = {
     index: function(req, res) {
-        res.render('product', {title: "Product Detail", productos: null});
+        db.Producto.findOne()
+        .then(function(results){
+            return res.render('product', {title:"Product Detail", productos: results});
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     },
-   
     create: function(req, res) {
-        res.render('product-add', {title: "Add Product", usuario: null});
+    
+        db.Usuario.findOne()
+            .then(function(results){
+                return res.render('product-add', {title:"Add Product", usuario: results});
+            })
+            .catch(function(error){
+                console.log(error);
+            });
     }
 }
-
-
 
 
 module.exports = productController;
