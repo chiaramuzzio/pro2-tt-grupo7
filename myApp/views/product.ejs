@@ -25,7 +25,17 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<!-- COMPLETAR CUANDO SE HAGA EL MODELO DE COMENTARIOS, AGREGARLO TAMB EN EL CONTROLLER -->
+						<% comentarios.forEach(function(comentario, index) { %>
+							<article>
+								<!-- <img src="PONER LINK CUANDO VEAMOS CROSS REFERENCE (?)" alt=""> -->
+								<div class="data">
+									<p class="user">
+										<strong> <a href="/users/profile"><%= comentario.clienteId %></a> </strong>
+										<%= comentario.comentario %>
+									</p>
+								</div>
+							</article>
+						<% }); %>					
 					</section>
 					<form class="form" action="/product" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">

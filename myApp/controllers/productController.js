@@ -2,9 +2,18 @@ const db = require('../database/models');
 
 const productController = {
     index: function(req, res) {
+        let comentarios;
+        let productos;
         db.Producto.findOne()
         .then(function(results){
-            return res.render('product', {title:"Product Detail", productos: results});
+            productos = results;
+            return db.Comentario.findAll({
+                limit: 5,
+            });
+        })
+        .then(function(results){
+            comentarios = results;
+            return res.render('product', {title:"Product", productos: productos, comentarios: comentarios});
         })
         .catch(function(error){
             console.log(error);
