@@ -2,9 +2,15 @@ const db = require('../database/models');
 
 const productController = {
     index: function(req, res) {
+        
+
+        let id = req.params.id;
+
+        
         let comentarios;
         let productos;
-        db.Producto.findOne()
+
+        db.Producto.findByPk(id)
         .then(function(results){
             productos = results;
             return db.Comentario.findAll({
