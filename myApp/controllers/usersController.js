@@ -4,6 +4,10 @@ const usersController = {
     login: function(req, res, next) {
         return res.render('login', {title:"Login"});
     },
+    logout: function(req, res, next) {
+        req.session.destroy()
+        return res.redirect("/");
+    },
     register: function(req, res, next) {
         return res.render('register', {title: "Register"});
     },
