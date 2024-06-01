@@ -17,13 +17,16 @@
 			</div>
 			<!-- Muestra los "ultimos" productos -->
 			<h2 class="col-12"></h2>
-			<form class="formPropio" action="/users/profile" method="get">
-				<label class="form-label" for="imagen">Imagen</label><br>
-				<input class="form-input file-select" type="file" id="imagen" name="imagen" required><br>
+			<form class="formPropio" action="/product/add" method="POST">
+
+				<input type="hidden" name="clienteId" value="<%= usuario.id %>">
 			 
-				<label class="form-label"for="nombre">Nombre del producto</label><br>
-				<input class="form-input" type="text" id="nombre" name="nombre" required><br>
-			 
+				<label class="form-label"for="nombreProd">Nombre del producto</label><br>
+				<input class="form-input" type="text" id="nombreProd" name="nombreProd" required><br>
+				
+				<label class="form-label" for="imagenProd">Imagen</label><br>
+				<input class="form-input file-select" type="text" id="imagen" name="imagenProd" required><br>
+
 				<label class="form-label" for="descripcion">Descripción</label><br>
 				<textarea class="form-input" id="descripcion" name="descripcion" rows="4" required></textarea><br>
 			 

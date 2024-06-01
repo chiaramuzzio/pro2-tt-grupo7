@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const db = require("./database/models")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
-const session = require('express-session');
 
 var app = express();
 
@@ -27,11 +28,36 @@ app.use(session({
   saveUninitialized: true,
 }))
 ;
+
 app.use(function(req, res, next) {
   if (req.session.user != undefined) {
     res.locals.user = req.session.user;
   }
   return next()
+});
+
+app.use(function(req, res, next) {
+  if (req.cookies.userId != undefined && req.session.user == undefined) {
+      let id = req.cookies.userId; // 4 5 ,6
+
+      db.User.findByPk(id)
+      .then(function(result) {
+
+        /* que quiero hacer???? */
+
+        req.session.user = result;
+        res.locals.user = result;
+
+        return next(); 
+      }).catch(function(err) {
+        return console.log(err); ; 
+      });
+
+      
+
+  } else {
+    return next()
+  }
 });
 
 app.use('/', indexRouter);

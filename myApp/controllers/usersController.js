@@ -1,16 +1,23 @@
-const { where } = require('sequelize');
 const db = require('../database/models');
+const op = db.Sequelize.Op;
 
 const usersController = {
     login: function(req, res, next) {
         return res.render('login', {title:"Login"});
     },
+    loginUser: function(req, res, next) {
+        console.log(req.body)
+    },
     logout: function(req, res, next) {
         req.session.destroy()
+        res.clearCookie("userId")
         return res.redirect("/");
     },
     register: function(req, res, next) {
         return res.render('register', {title: "Register"});
+    },
+    store: function(req, res, next) {
+        console.log("holaaa")
     },
     profile: function(req, res, next) {
         let usuario;

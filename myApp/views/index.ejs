@@ -43,6 +43,7 @@
 			</div>
 		</div>
 		<!-- /Novedades -->
+
 		<!-- Más comentados -->
 		<div class="container products-wrapper">
 			<div class="row">
@@ -53,7 +54,7 @@
 				<% productos.forEach(function(producto, index) { %>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-							<a href="/product/<%= producto.id %>">
+							<a href="/product/id/<%= producto.id %>">
 								<figure class="product-box_image">
 									<img class="fotoIndex" src=<%= producto.imagenProd %>>
 								</figure>
