@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const db = require('../database/models');
 
 const usersController = {

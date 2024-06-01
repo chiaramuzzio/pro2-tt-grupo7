@@ -23,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret:'myApp',
-  resave:false,
-  saveUninitialized:true,
+  resave: false,
+  saveUninitialized: true,
 }))
 ;
 app.use(function(req, res, next) {
@@ -33,14 +33,6 @@ app.use(function(req, res, next) {
   }
   return next()
 });
-
-app.use(function(req,res,next){
-  if(req.session.user != undefined){
-    res.locals.user =req.session.user
-  }
-  return next()
-});
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
