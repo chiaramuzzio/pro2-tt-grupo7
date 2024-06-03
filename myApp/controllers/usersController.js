@@ -1,24 +1,95 @@
 const db = require('../database/models');
 const op = db.Sequelize.Op;
+const bcrypt = require("bcryptjs")
 
 const usersController = {
+    register: function(req, res, next) {
+        
+        // return res.render('register', {title: "Register"});
+        if (req.session.user != undefined) {
+            return res.redirect("/users/login");
+        } else {
+            return res.render('register', {title: "Register"})
+        }
+    },
+
     login: function(req, res, next) {
-        return res.render('login', {title:"Login"});
+        // return res.render('login', {title:"Login"});
+        if (req.session.user != undefined) {
+            return res.redirect("/");
+        } else {
+            return res.render('login', {title:"Login"})
+        }
     },
+
     loginUser: function(req, res, next) {
-        console.log(req.body)
+        // console.log(req.body)
+        
+        let form = req.body;
+
+        let filtro = {
+            where: [{mail: form.email}]
+        };
+
+        db.Usuario.findOne(filtro)
+        .then((result) => {
+            if (result != null) {
+
+                
+                let check = bcrypt.compareSync(form.password, result.contrasenia);
+
+                if (check) {
+                    req.session.user = result;
+                    if (form.remember != undefined) {
+                        res.cookie("userId", result.id, {maxAge: 1000 * 60 * 35})
+                    }
+                    return res.redirect("/profile");
+                } else {
+                    return res.send("error en la password");
+
+                }
+
+
+            } else {
+                return res.send("No hay mail parecidos a : " + form.email);
+            }
+
+        }).catch((err) => {
+            return console.log(err);
+        });
     },
+
+
+
     logout: function(req, res, next) {
         req.session.destroy()
         res.clearCookie("userId")
         return res.redirect("/");
     },
-    register: function(req, res, next) {
-        return res.render('register', {title: "Register"});
-    },
-    store: function(req, res, next) {
-        console.log("holaaa")
-    },
+
+
+    store: function(req, res) {
+        let form = req.body;
+
+        let usuario = {
+            mail: form.email,
+            usuario: form.username,
+            contrasenia: bcrypt.hashSync(form.password, 10),
+            fechaNacimiento: form.birthdate,
+            numeroDocumento: form.document_number,
+            foto: form.profile_picture
+        }
+
+        db.Usuario.create(usuario)
+        .then((result) => {
+            // return res.send(result)
+            return res.redirect("/")
+        })
+        .catch((err) => {
+        return console.log(err);
+        });
+        },
+
     profile: function(req, res, next) {
         let usuario;
         let productos;
