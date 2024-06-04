@@ -125,7 +125,19 @@ const usersController = {
     },
 
     usersEdit: function(req, res, next) {
-        db.Usuario.findOne()
+        let id
+
+        if (req.session.user != undefined) {
+            id = req.session.user.id;
+        }
+        else if (req.cookies.userId != undefined) {
+            id = req.cookies.userId;
+        }
+        else {
+            return res.redirect("/users/login");
+        }
+
+        db.Usuario.findByPk(id)
         .then(function(results){
             return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
         })

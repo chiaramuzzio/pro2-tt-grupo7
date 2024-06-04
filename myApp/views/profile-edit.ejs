@@ -20,22 +20,22 @@
 			<!-- Muestra los "ultimos" productos -->
 			<form class="formPropio formRegister" action="/users/edit" method="POST">
 				<label class="form-label" for="email">Email</label><br>
-				<input class="form-input" type="email" id="email" name="email" value="" placeholder="usuario@ejemplo.com" required><br>
+				<input class="form-input" type="email" id="email" name="email" value="<%= usuario.mail %>" placeholder="usuario@ejemplo.com" required><br>
 			   
 				<label class="form-label" for="username">Usuario</label><br>
-				<input class="form-input" type="text" id="username" name="username" value="" placeholder="usuario123" required><br>
+				<input class="form-input" type="text" id="username" name="username" value="<%= usuario.usuario %>" placeholder="usuario123" required><br>
 			   
 				<label class="form-label" for="password">Nueva Contraseña</label><br>
 				<input class="form-input" type="text" id="password" name="password" placeholder="contraseña"> <br>
 			   
 				<label class="form-label" for="birthdate">Fecha de nacimiento</label><br>
-				<input class="form-input" type="date" id="birthdate" name="birthdate" value=""  required><br>
+				<input class="form-input" type="date" id="birthdate" name="birthdate" value="<%= usuario.fechaNacimiento %>"  required><br>
 			   
 				<label class="form-label" for="document_number">Número de documento</label><br>
-				<input class="form-input" type="number" id="document_number" name="document_number" value="" placeholder="123456789" required><br>
+				<input class="form-input" type="number" id="document_number" name="document_number" value="<%= usuario.numeroDocumento %>" placeholder="123456789" required><br>
 			   
 				<label class="form-label" for="profile_picture">Foto de perfil</label><br>
-				<input class="form-input file-select" type="file" id="profile_picture" name="profile_picture"><br>
+				<input class="form-input file-select" type="text" id="profile_picture" value="<%= usuario.foto %>" name="profile_picture"><br>
 			   
 				<button type="submit" class="buy-now-button botonRegister">Guardar Cambios</button>
 			</form>
