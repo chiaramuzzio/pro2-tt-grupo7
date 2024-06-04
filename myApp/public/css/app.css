@@ -557,7 +557,10 @@ textarea.form-input {
 }
 
 .foto-perfil{
-  border-radius: 50%;
+  border-radius: 100%;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
 }
 
 .main-title{
@@ -574,6 +577,7 @@ textarea.form-input {
 
 .fotoIndex{
   height: 350px;
+
 }
 
 

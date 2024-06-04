@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
   if (req.cookies.userId != undefined && req.session.user == undefined) {
       let id = req.cookies.userId; // 4 5 ,6
 
-      db.User.findByPk(id)
+      db.Usuario.findByPk(id)
       .then(function(result) {
 
         /* que quiero hacer???? */
@@ -52,10 +52,8 @@ app.use(function(req, res, next) {
       }).catch(function(err) {
         return console.log(err); ; 
       });
-
-      
-
-  } else {
+  } 
+  else {
     return next()
   }
 });
@@ -63,7 +61,6 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
-
 
   // catch 404 and forward to error handler
 app.use(function(req, res, next) {

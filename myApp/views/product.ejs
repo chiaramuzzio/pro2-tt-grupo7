@@ -5,18 +5,28 @@
 
 <body>
 	<!-- Header -->
-	
-	<!-- /Header -->
 	<%- include("./partials/header") %>
+	<!-- /Header -->
 
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= productos.nombreProd%></h2> 
-			<!-- <p class="product-detail-description">
-				<a href="/product/add">Editar</a>
-			</p> -->
+			<p class="product-detail-description">
+				<form action="/product/editProduct" method="post">
+					<input type="hidden" name="id" value="<%= productos.id%>">
+					<button class="btn-special btn-red" type="submit"><a>Editar</a></button>
+				</form>  
+				<a>‎ ‎ </a>
+				<form action="/product/delete" method="post">
+					<input type="hidden" name="id" value="<%= productos.id%>">
+					<button class="btn-special btn-red" type="submit"><a>Eliminar</a></button>
+				</form>  
+				<!-- ACA HABRÍA QUE PONER UN CONDICIONAL QUE SI EL PRODUCTO QUE 
+				SE ESTA VIENDO ES DEL USUARIO SE PUEDA EDITAR, SINO QUE NO MUESTRE LA OPCION -->
+			</p>
 		</div>
+
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
@@ -26,6 +36,7 @@
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<% comentarios.forEach(function(comentario, index) { %>
+							<!-- luis dijo que cambie el forEach por for, NO TE OLVIDES PLS!! -->
 							<article>
 								<!-- <img src="PONER LINK CUANDO VEAMOS CROSS REFERENCE (?)" alt=""> -->
 								<div class="data">
@@ -37,7 +48,7 @@
 							</article>
 						<% }); %>					
 					</section>
-					<form class="form" action="/product" method="get">
+					<form class="form" action="/product/id/<%= productos.id %>" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button botonComentario">AGREGAR COMENTARIO</button>
 					</form>
