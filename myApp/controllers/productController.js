@@ -6,20 +6,21 @@ const productController = {
     index: function(req, res) {
 
         let id = req.params.id;
+        let criterio = {
+            include: [
+              {association: "usuario"},
+              {association: "comentarios", 
+                include: [{association: 'usuario'} 
+                ]}
+            ]
+        }
 
         let comentarios;
         let productos;
 
-        db.Producto.findByPk(id)
+        db.Producto.findByPk(id, criterio)
         .then(function(results){
-            productos = results;
-            return db.Comentario.findAll({
-                limit: 5,
-            });
-        })
-        .then(function(results){
-            comentarios = results;
-            return res.render('product', {title:"Product", productos: productos, comentarios: comentarios});
+            return res.render('product', {title:"Product", usuario: req.session.user || req.cookies.userId, productos: results, comentarios: results.comentarios});
         })
         .catch(function(error){
             console.log(error);
@@ -62,8 +63,8 @@ const productController = {
         
         db.Producto.findByPk(form.id)
         .then(function(results){
-            // return res.send(results);
-            return res.render('product-edit', {title:"Product Edit", productos: results});
+            // return res.send(req.session.user || req.cookies.userId);
+            return res.render('product-edit', {title:"Product Edit", productos: results, usuario: req.session.user || req.cookies.userId});
         })
         .catch((err) => {
             return console.log(err);
@@ -95,9 +96,9 @@ const productController = {
           }
         }
   
-        db.Movie.destroy(filtrado)
+        db.Producto.destroy(filtrado)
         .then((result) => {
-          return res.redirect("/movies/");
+          return res.redirect("/");
         }).catch((err) => {
           return console.log(err);
         });

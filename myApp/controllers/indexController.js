@@ -10,7 +10,7 @@ const indexController = {
 
         db.Producto.findAll(filtrado)
         .then(function(results){
-            return res.render('index', {title: "Home", productos: results});
+            return res.render('index', {title: "Home", productos: results, user: req.session.user, userId: req.cookies.userId, usuario: req.session.user});
         })
         .catch(function(error){
             console.log(error);
@@ -29,7 +29,7 @@ const indexController = {
 
         db.Producto.findAll(filtrado)
         .then(function(results){
-            return res.render('search-results', {title: "Search Results", productos: results});
+            return res.render('search-results', {title: "Search Results", productos: results, usuario: req.session.user});
         })
         .catch(function(error){
             console.log(error);

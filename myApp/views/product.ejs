@@ -4,9 +4,11 @@
 <%- include("./partials/head") %>
 
 <body>
-	<!-- Header -->
-	<%- include("./partials/header") %>
-	<!-- /Header -->
+	<% if (locals.user != undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 
 	<!-- product detail -->
 	<div class="container products-wrapper">
@@ -38,10 +40,10 @@
 						<% comentarios.forEach(function(comentario, index) { %>
 							<!-- luis dijo que cambie el forEach por for, NO TE OLVIDES PLS!! -->
 							<article>
-								<!-- <img src="PONER LINK CUANDO VEAMOS CROSS REFERENCE (?)" alt=""> -->
+								<img src=<%= comentario.usuario.foto %> alt="">
 								<div class="data">
 									<p class="user">
-										<strong> <a href="/users/profile"><%= comentario.clienteId %></a> </strong>
+										<strong> <a href="/users/profile"><%= comentario.usuario.usuario %></a> </strong>
 										<%= comentario.comentario %>
 									</p>
 								</div>
