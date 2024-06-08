@@ -93,9 +93,10 @@ const usersController = {
 
         let criterio = {
             include: [
-              {association: "productos"},
-              {association: "comentarios"}
-            ]
+                {association: "productos"},
+                {association: "comentarios"}
+            ],
+            order: [[{model: db.Producto, as: 'productos'}, 'createdAt', 'DESC']]
         }
     
         db.Usuario.findByPk(id, criterio)

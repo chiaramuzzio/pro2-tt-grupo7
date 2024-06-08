@@ -13,7 +13,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= productos.nombreProd%></h2> 
+			<h2 class="products-title"><%= productos.nombreProd%></h2>
 			<% if (condition) {%>
 				<p class="product-detail-description">
 					<form action="/product/editProduct" method="post">
@@ -29,7 +29,9 @@
 				</p>
 			<%}%>
 		</div>
-
+		<%if (!condition){ %>
+			<p class="user">Producto cargado por <a class="hoverUser" href="/users/profile/id/<%= productos.usuario.id%>">@<%= productos.usuario.usuario%></a></p>
+		<%}%>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">

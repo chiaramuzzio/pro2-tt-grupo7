@@ -27,12 +27,15 @@ const indexController = {
         let filtrado = {
             where: {
                 nombreProd: { [op.like]: "%" + busqueda + "%"}
-            }
+            },
+            include: [
+                {association: "comentarios"}
+              ]
         }
 
         db.Producto.findAll(filtrado)
         .then(function(results){
-            return res.render('search-results', {title: "Search Results", productos: results, usuario: req.session.user});
+            return res.render("search-results", {title: `Resultados de la busqueda: ${busqueda}`, productos: results});
         })
         .catch(function(error){
             console.log(error);

@@ -469,6 +469,14 @@ h1, h2, h3{
   font-size: 1.7em;
 }
 
+.user{
+  font-size: 1.7em;
+  margin-bottom: 25px;
+}
+
+.hoverUser:hover{
+  color: var(--light-blue);
+}
   /*====== Formularios ======*/
 
 .form-label {
