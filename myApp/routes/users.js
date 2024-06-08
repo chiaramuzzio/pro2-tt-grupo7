@@ -8,7 +8,7 @@ router.post('/login', usersController.loginUser);
 router.get('/register', usersController.register);
 router.post('/register', usersController.store);
 
-router.get('/profile', usersController.profile);
+router.get('/profile/id/:id', usersController.profile);
 
 router.get('/edit', usersController.usersEdit);
 

@@ -56,19 +56,19 @@ insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDoc
 values (default, 'chiarafelipe@gmail.com', 'cmfrg', '123456', "2005/09/19", 46291301, "https://i.pinimg.com/736x/a3/ea/87/a3ea878f893e55ad8a0c1b59258885ee.jpg" );
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'carlosperez@gmail.com', 'carlosperez', 'carlitos10', "1960/10/10", 12345678, "carlitos.png" );
+values (default, 'carlosperez@gmail.com', 'carlosperez', 'carlitos10', "1960/10/10", 12345678, "https://i.pinimg.com/236x/6e/a4/a6/6ea4a67d3d7850dadff75267a2ed4db5.jpg" );
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'manujurel@gmail.com', 'manujurel', 'carlitos10', "1961/10/10", 12345671, "manu.png");
+values (default, 'manujurel@gmail.com', 'manujurel', 'carlitos10', "1961/10/10", 12345671, "https://i.pinimg.com/236x/d1/fd/8e/d1fd8eb48ccf25d9c8f38e87fc0338e7.jpg");
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'franciscot@gmail.com', 'pancho_torres', 'carlitos10', '1962/10/10', 12345672, "pancho.png");
+values (default, 'franciscot@gmail.com', 'pancho_torres', 'carlitos10', '1962/10/10', 12345672, "https://i.pinimg.com/236x/59/bc/ac/59bcac946851d7bc78caa88ac64c0bd8.jpg");
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'felitromel@gmail.com', 'felitromel', 'carlitos10', '1963/10/10', 12345673, 'feli.png');
+values (default, 'felitromel@gmail.com', 'felitromel', 'carlitos10', '1963/10/10', 12345673, 'https://pbs.twimg.com/media/FySs54aXwAMZ-q0?format=jpg&name=small');
 
 insert into usuarios (id, mail, usuario, contrasenia, fechaNacimiento, numeroDocumento, foto)
-values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'felicitas.png');
+values (default, 'felitrazzo@gmail.com', 'felicitastrazzo', 'carlitos10', '1964/10/10', 12345674, 'https://viapais.com.ar/resizer/ZZc4x3umQb1qnQNGE-T24OwMddk=/1023x1007/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/PVIEYFLP5NEO3HVGHHZZILKN7U.jpg');
 
     /*SQL productos*/
 

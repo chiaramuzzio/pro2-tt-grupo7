@@ -14,19 +14,20 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= productos.nombreProd%></h2> 
-			<p class="product-detail-description">
-				<form action="/product/editProduct" method="post">
-					<input type="hidden" name="id" value="<%= productos.id%>">
-					<button class="btn-special btn-red" type="submit"><a>Editar</a></button>
-				</form>  
-				<a>‎ ‎ </a>
-				<form action="/product/delete" method="post">
-					<input type="hidden" name="id" value="<%= productos.id%>">
-					<button class="btn-special btn-red" type="submit"><a>Eliminar</a></button>
-				</form>  
-				<!-- ACA HABRÍA QUE PONER UN CONDICIONAL QUE SI EL PRODUCTO QUE 
-				SE ESTA VIENDO ES DEL USUARIO SE PUEDA EDITAR, SINO QUE NO MUESTRE LA OPCION -->
-			</p>
+			<% if (condition) {%>
+				<p class="product-detail-description">
+					<form action="/product/editProduct" method="post">
+						<input type="hidden" name="id" value="<%= productos.id%>">
+						<button class="btn-special btn-red botonAgregar" type="submit"><a>Editar</a></button>
+					</form>  
+					<a>‎ ‎ </a>
+					<form action="/product/delete" method="post">
+						<input type="hidden" name="id" value="<%= productos.id%>">
+						<input type="hidden" name="idUsuario" value="<%= productos.usuario.id%>">
+						<button class="btn-special btn-red botonAgregar" type="submit"><a>Eliminar</a></button>
+					</form>
+				</p>
+			<%}%>
 		</div>
 
 		<div class="product-detail">
@@ -43,7 +44,7 @@
 								<img src=<%= comentario.usuario.foto %> alt="">
 								<div class="data">
 									<p class="user">
-										<strong> <a href="/users/profile"><%= comentario.usuario.usuario %></a> </strong>
+										<strong> <a href="/users/profile/id/<%= comentario.usuario.id %>"><%= comentario.usuario.usuario %></a> </strong>
 										<%= comentario.comentario %>
 									</p>
 								</div>

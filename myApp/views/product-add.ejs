@@ -6,8 +6,11 @@
 
 <body>
 	<!-- Header -->
-	<%- include("./partials/headerLogueado") %>
-	<!-- /Header -->
+	<% if (locals.user != undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>	<!-- /Header -->
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -19,7 +22,7 @@
 			<h2 class="col-12"></h2>
 			<form class="formPropio" action="/product/add" method="POST">
 
-				<input type="hidden" name="clienteId" value="<%= usuario.id %>">
+				<input type="hidden" name="clienteId" value="<%= id %>">
 			 
 				<label class="form-label"for="nombreProd">Nombre del producto</label><br>
 				<input class="form-input" type="text" id="nombreProd" name="nombreProd" required><br>

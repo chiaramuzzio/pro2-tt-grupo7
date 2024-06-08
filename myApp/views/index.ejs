@@ -38,7 +38,7 @@
 								<article class="product-box_data">
 									<h2><%= producto.nombreProd %></h2>
 									<p><%= producto.descripcion %></p>
-									<p>Comentarios: 0</p> <!--despues cuando veamos como relacionar hay q modificar la cant y que sea dinamica -->
+									<p>Comentarios: <%= producto.comentarios.length %></p>
 								</article>
 							</a>
 						</section>
@@ -69,7 +69,7 @@
 								<article class="product-box_data">
 									<h2><%= producto.nombreProd %></h2>
 									<p><%= producto.descripcion %></p>
-									<p>Comentarios: 0</p>
+									<p>Comentarios: <%= producto.comentarios.length %></p>
 								</article>
 							</a>
 						</section>

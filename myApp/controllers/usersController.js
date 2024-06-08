@@ -6,7 +6,7 @@ const usersController = {
     register: function(req, res, next) {
         
         if (req.session.user != undefined) {
-            return res.redirect("/users/login");
+            return res.redirect("/users/login"); //no deberia reditigir a la home o al perfil?
         } 
         else {
             return res.render('register', {title: "Register"})
@@ -44,7 +44,7 @@ const usersController = {
                     if (form.remember != undefined) {
                         res.cookie("userId", result.id, {maxAge: 1000 * 60 * 35})
                     }
-                    return res.redirect("/users/profile");
+                    return res.redirect("/users/profile/id/" + result.id);
                 } 
                 else {
                     return res.send("error en la password");
@@ -89,35 +89,18 @@ const usersController = {
         },
 
     profile: function(req, res, next) {
-        let usuario;
-        let productos;
-        let id
+        let id = req.params.id;
 
-        if (req.session.user != undefined) {
-            id = req.session.user.id;
-        }
-        else if (req.cookies.userId != undefined) {
-            id = req.cookies.userId;
-        }
-        else {
-            return res.redirect("/users/login");
+        let criterio = {
+            include: [
+              {association: "productos"},
+              {association: "comentarios"}
+            ]
         }
     
-        db.Usuario.findByPk(id)
+        db.Usuario.findByPk(id, criterio)
             .then(function(results){
-                usuario = results; 
-
-                let filtro = {
-                    where: [
-                        {clienteId: id}
-                    ]
-                };
-
-                return db.Producto.findAll(filtro); 
-            })
-            .then(function(results){
-                productos = results;
-                return res.render('profile', {title:"Profile", usuario: usuario, productos: productos});
+                return res.render('profile', {title: `@${results.usuario}`, usuario: results, productos: results.productos, comentarios: results.comentarios.length});
             })
             .catch(function(error){
                 console.log(error);

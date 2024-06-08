@@ -15,12 +15,16 @@ const productController = {
             ]
         }
 
-        let comentarios;
-        let productos;
+        let condition = false;
 
         db.Producto.findByPk(id, criterio)
         .then(function(results){
-            return res.render('product', {title:"Product", usuario: req.session.user || req.cookies.userId, productos: results, comentarios: results.comentarios});
+
+            if (req.session.user != undefined && req.session.user.id == results.usuario.id) {
+                condition = true;
+            }
+
+            return res.render('product', {title:"Product", productos: results, comentarios: results.comentarios, condition: condition});
         })
         .catch(function(error){
             console.log(error);
@@ -29,23 +33,15 @@ const productController = {
 
     create: function(req, res) {
 
-        if (req.session.user != undefined) {
-            id = req.session.user.id;
-        }
-        else if (req.cookies.userId != undefined) {
-            id = req.cookies.userId;
+        let id;
+
+        if (req.session.user != undefined || req.cookies.userId != undefined) {
+            id = req.session.user.id || req.cookies.userId;
+            return res.render('product-add', {title:"Add Product", id: id})
         }
         else {
             return res.redirect("/users/login");
         }
-
-        db.Usuario.findByPk(id)
-            .then(function(results){
-                return res.render('product-add', {title:"Add Product", usuario: results});
-            })
-            .catch(function(error){
-                console.log(error);
-            });
     },
 
     store: function(req, res) {
@@ -59,32 +55,52 @@ const productController = {
     },
 
     formUpdate: function(req, res) {
-        let form = req.body;
         
-        db.Producto.findByPk(form.id)
+        let form = req.body;
+
+        let criterio = {
+            include: [
+              {association: "usuario"}
+            ]}
+
+        db.Producto.findByPk(form.id, criterio)
         .then(function(results){
-            // return res.send(req.session.user || req.cookies.userId);
-            return res.render('product-edit', {title:"Product Edit", productos: results, usuario: req.session.user || req.cookies.userId});
+            // return res.send(results);
+            return res.render('product-edit', {title:`Editar el producto ${results.nombreProd}`, productos: results});
         })
         .catch((err) => {
             return console.log(err);
           });
-    },
+        
+        }
+    ,
 
     update: function(req, res) {
         let form = req.body;
+
         let filtrado = {
             where: {
             id: form.id
             }
         } 
 
-        db.Producto.update(form, filtrado)
-        .then((result) => {
-            return res.redirect("/product/id/" + form.id)
-        }).catch((err) => {
-            return console.log(err);
-        });
+        if (req.session.user != undefined || req.cookies.userId != undefined) {
+            let id = req.session.user.id || req.cookies.userId;
+            if (form.idUsuario == id) {
+                db.Producto.update(form, filtrado)
+                .then((result) => {
+                    return res.redirect("/product/id/" + form.id)
+                }).catch((err) => {
+                    return console.log(err);
+                });
+            }
+            else{
+                return res.redirect("/users/profile/id/" + id);
+            }
+        }
+        else{
+            return res.redirect("/users/login");
+        }
     },
 
     destroy: function(req, res) {
@@ -95,14 +111,25 @@ const productController = {
             id: form.id
           }
         }
-  
-        db.Producto.destroy(filtrado)
-        .then((result) => {
-          return res.redirect("/");
-        }).catch((err) => {
-          return console.log(err);
-        });
-        
+
+        if (req.session.user != undefined || req.cookies.userId != undefined) {
+            let id = req.session.user.id || req.cookies.userId;
+            if (form.idUsuario == id) {
+                db.Producto.destroy(filtrado)
+                .then((result) => {
+                  return res.redirect("/");
+                })
+                .catch((err) => {
+                  return console.log(err);
+                });
+            }
+            else{
+                return res.redirect("/users/profile/id/" + id);
+            }
+        }
+        else{
+            return res.redirect("/users/login");
+        }        
       }
 }
 

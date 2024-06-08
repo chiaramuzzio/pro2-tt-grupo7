@@ -3,14 +3,17 @@ const op = db.Sequelize.Op;
 
 const indexController = {
     index: function(req, res) {
-      
         let filtrado = {
             order: [["nombreProd", "ASC"]],
+            include: [
+                {association: "comentarios"}
+              ]
         }
 
         db.Producto.findAll(filtrado)
         .then(function(results){
-            return res.render('index', {title: "Home", productos: results, user: req.session.user, userId: req.cookies.userId, usuario: req.session.user});
+            // return res.send(results)
+            return res.render('index', {title: "Home", productos: results});
         })
         .catch(function(error){
             console.log(error);

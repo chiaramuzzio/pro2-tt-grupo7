@@ -6,8 +6,11 @@
 
 <body>
 	<!-- Header -->
-	<%- include("./partials/headerLogueado") %>
-
+	<% if (locals.user != undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 	<!-- /Header -->
 
 	<!-- Novedades -->
@@ -20,6 +23,8 @@
 
 			<form class="formPropio" action="/product/edit" method="POST">
 				<input type="hidden" name="id" value="<%= productos.id %>">
+				<input type="hidden" name="idUsuario" value="<%= productos.usuario.id %>">
+
 
 				<label class="form-label" for="nombreProd">Nombre del producto</label><br>
 				<input class="form-input" value="<%= productos.nombreProd %>" type="text" id="nombreProd" name="nombreProd" required><br>

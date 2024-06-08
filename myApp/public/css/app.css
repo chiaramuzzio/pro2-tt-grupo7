@@ -580,6 +580,21 @@ textarea.form-input {
 
 }
 
+.botonAgregar{
+  background-color: #1259c3;
+  padding: 10px 20px;
+  border-radius: 4px;
+  color: #fff;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.botonAgregar:hover {
+  background-color: #fff;
+  color: #1259c3;
+  border: 1px solid #1259c3;
+}
+
 
   /*====== Media-Queries ======*/
 
