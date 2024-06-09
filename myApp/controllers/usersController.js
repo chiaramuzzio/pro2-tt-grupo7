@@ -55,7 +55,7 @@ const usersController = {
                     }
                 } 
                 else {
-                    return res.send("No hay mail parecido a : " + form.email);
+                    return res.redirect("/users/login");
                 }
     
             })
@@ -64,8 +64,7 @@ const usersController = {
             });
         }
         else{
-            res.render('login', {title: "login", errors: errors.mapped(),  old: req.body });
-            /// FALTA ACA ///
+            res.render('login', {title: "Login", errors: errors.mapped(),  old: req.body });
         }
     },
         
@@ -83,23 +82,30 @@ const usersController = {
         let form = req.body;
         let errors = validationResult(req);
 
-        let usuario = {
-            mail: form.email,
-            usuario: form.username,
-            contrasenia: bcrypt.hashSync(form.password, 10),
-            fechaNacimiento: form.birthdate,
-            numeroDocumento: form.document_number,
-            foto: form.profile_picture
+        if (errors.isEmpty()) {
+            let usuario = {
+                mail: form.email,
+                usuario: form.username,
+                contrasenia: bcrypt.hashSync(form.password, 10),
+                fechaNacimiento: form.birthdate,
+                numeroDocumento: form.document_number,
+                foto: form.profile_picture
+            }
+    
+            db.Usuario.create(usuario)
+            .then((result) => {
+                // return res.send(result)
+                return res.redirect("/")
+            })
+            .catch((err) => {
+                return console.log(err);
+            });       
+        } 
+        else {
+            // return res.send(errors.mapped());
+            return res.render('login', {title: "Login", errors: errors.mapped(), old: req.body });        
         }
 
-        db.Usuario.create(usuario)
-        .then((result) => {
-            // return res.send(result)
-            return res.redirect("/")
-        })
-        .catch((err) => {
-            return console.log(err);
-        });
         },
 
     profile: function(req, res, next) {

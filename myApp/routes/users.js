@@ -6,7 +6,16 @@ const { body } = require('express-validator');
 let validations = [
     body('email')
         .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
-        .isEmail().withMessage('Debe ser un email valido'),
+        .isEmail().withMessage('Debe ser un email valido')
+        .custom(function(value, {req}){
+            return db.User.findOne({
+                where: { email: req.body.email },
+              })
+                  .then(function(user){
+                     if(user){ //ARREGLAR ESTO --> FALTA ACA
+       }
+                  })
+       }),
     body('password')
         .notEmpty().withMessage('El campo Contraseña es obligatorio.'),
     body('remember')
