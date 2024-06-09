@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const op = db.Sequelize.Op;
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const { validationResult } = require('express-validator');
 
 const usersController = {
     register: function(req, res, next) {
@@ -24,41 +25,52 @@ const usersController = {
 
     loginUser: function(req, res, next) {
         // console.log(req.body)
-        
+
         let form = req.body;
+        let errors = validationResult(req);
 
-        let filtro = {
-            where: [
+        if (errors.isEmpty()) {
+            
+            let filtro = {
+                where: [
                 {mail: form.email}
-            ]
-        };
-
-        db.Usuario.findOne(filtro)
-        .then((result) => {
-            if (result != null) {
-                
-                let check = bcrypt.compareSync(form.password, result.contrasenia);
-
-                if (check) {
-                    req.session.user = result;
-                    if (form.remember != undefined) {
-                        res.cookie("userId", result.id, {maxAge: 1000 * 60 * 35})
-                    }
-                    return res.redirect("/users/profile/id/" + result.id);
-                } 
-                else {
-                    return res.send("error en la password");
-                }
-            } 
-            else {
-                return res.send("No hay mail parecido a : " + form.email);
+                ]
             }
 
-        })
-        .catch((err) => {
-            return console.log(err);
-        });
+            db.Usuario.findOne(filtro)
+            .then((result) => {
+                if (result != null) {
+                    
+                    let check = bcrypt.compareSync(form.password, result.contrasenia);
+    
+                    if (check) {
+                        req.session.user = result;
+                        if (form.remember != undefined) {
+                            res.cookie("userId", result.id, {maxAge: 1000 * 60 * 35})
+                        }
+                        return res.redirect("/users/profile/id/" + result.id);
+                    } 
+                    else {
+                        return res.send("error en la password");
+                    }
+                } 
+                else {
+                    return res.send("No hay mail parecido a : " + form.email);
+                }
+    
+            })
+            .catch((err) => {
+                return console.log(err);
+            });
+        }
+        else{
+            res.render('login', {title: "login", errors: errors.mapped(),  old: req.body });
+            /// FALTA ACA ///
+        }
     },
+        
+            
+
 
     logout: function(req, res, next) {
         req.session.destroy()
@@ -67,7 +79,9 @@ const usersController = {
     },
 
     store: function(req, res) {
+
         let form = req.body;
+        let errors = validationResult(req);
 
         let usuario = {
             mail: form.email,
