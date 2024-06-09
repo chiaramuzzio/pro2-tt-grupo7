@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const op = db.Sequelize.Op;
-let id;
+// let id; no se porque puse eso ahi, si tira error hay q descomentarlo
+const { validationResult } = require('express-validator');
 
 const productController = {
     index: function(req, res) {
@@ -33,11 +34,8 @@ const productController = {
 
     create: function(req, res) {
 
-        let id;
-
         if (req.session.user != undefined || req.cookies.userId != undefined) {
-            id = req.session.user.id || req.cookies.userId;
-            return res.render('product-add', {title:"Add Product", id: id})
+            return res.render('product-add', {title:"Add Product"})
         }
         else {
             return res.redirect("/users/login");
@@ -46,12 +44,20 @@ const productController = {
 
     store: function(req, res) {
         let form = req.body;
-        db.Producto.create(form)
-        .then((result) => {
-            return res.redirect("/product/id/" + result.id)
-        }).catch((err) => {
-          return console.log(err);
-        });
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()) {
+            db.Producto.create(form)
+            .then((result) => {
+                return res.redirect("/product/id/" + result.id)
+            }).catch((err) => {
+              return console.log(err);
+            });        
+        } 
+        else {
+            // return res.send(errors.mapped());
+            return res.render('product-add', {title: "Register", errors: errors.mapped(), old: req.body });        
+        }
     },
 
     formUpdate: function(req, res) {
@@ -72,35 +78,53 @@ const productController = {
             return console.log(err);
           });
         
-        }
-    ,
+    },
 
     update: function(req, res) {
         let form = req.body;
+        let errors = validationResult(req);
 
-        let filtrado = {
-            where: {
-            id: form.id
-            }
-        } 
-
-        if (req.session.user != undefined || req.cookies.userId != undefined) {
-            let id = req.session.user.id || req.cookies.userId;
-            if (form.idUsuario == id) {
-                db.Producto.update(form, filtrado)
-                .then((result) => {
-                    return res.redirect("/product/id/" + form.id)
-                }).catch((err) => {
-                    return console.log(err);
-                });
+        if (errors.isEmpty()) {
+            
+            let filtrado = {
+                where: {
+                id: form.id
+                }
+            } 
+    
+            if (req.session.user != undefined || req.cookies.userId != undefined) {
+                let id = req.session.user.id || req.cookies.userId;
+                if (form.idUsuario == id) {
+                    db.Producto.update(form, filtrado)
+                    .then((result) => {
+                        return res.redirect("/product/id/" + form.id)
+                    }).catch((err) => {
+                        return console.log(err);
+                    });
+                }
+                else{
+                    return res.redirect("/users/profile/id/" + id);
+                }
             }
             else{
-                return res.redirect("/users/profile/id/" + id);
+                return res.redirect("/users/login");
             }
-        }
-        else{
-            return res.redirect("/users/login");
-        }
+        } 
+        else {
+
+            let criterio = {
+                include: [
+                  {association: "usuario"}
+                ]
+            }
+
+            db.Producto.findByPk(form.id, criterio)
+            .then(function(results){
+                return res.render('product-edit', {title: "Edit Product", errors: errors.mapped(), old: req.body, productos: results });
+            })
+            .catch((err) => {
+                return console.log(err);
+            });        } 
     },
 
     destroy: function(req, res) {
