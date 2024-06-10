@@ -39,6 +39,7 @@
 									<h2><%= producto.nombreProd %></h2>
 									<p><%= producto.descripcion %></p>
 									<p>Comentarios: <%= producto.comentarios.length %></p>
+									<p>Subido por: <a href="/users/profile/id/<%= producto.usuario.id %>"><%= producto.usuario.email %></a></p>
 								</article>
 							</a>
 						</section>
@@ -70,6 +71,7 @@
 									<h2><%= producto.nombreProd %></h2>
 									<p><%= producto.descripcion %></p>
 									<p>Comentarios: <%= producto.comentarios.length %></p>
+									<p>Subido por: <a href="/users/profile/id/<%= producto.usuario.id %>"><%= producto.usuario.email %></a></p>
 								</article>
 							</a>
 						</section>

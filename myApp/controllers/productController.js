@@ -42,6 +42,7 @@ const productController = {
         }
     },
 
+
     store: function(req, res) {
         let form = req.body;
         let errors = validationResult(req);
