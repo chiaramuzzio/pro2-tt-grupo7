@@ -16,16 +16,20 @@ let validations = [
        }
                   })
        }),
+    body('username')
+    .notEmpty().withMessage('Por favor, introduzca un nombre de usuario').bail,
+
     body('password')
-        .notEmpty().withMessage('El campo Contraseña es obligatorio.'),
-    body('remember')
+        .notEmpty().withMessage('El campo Contraseña es obligatorio.')
+        .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres').bail()
+   
 ]
 
 router.get('/login', usersController.login);
 router.post('/login', validations, usersController.loginUser);
 
 router.get('/register', usersController.register);
-router.post('/register', usersController.store);
+router.post('/register', validations, usersController.store);
 
 router.get('/profile/id/:id', usersController.profile);
 
