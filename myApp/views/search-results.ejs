@@ -37,13 +37,13 @@
                             </figure>
                             <article class="product-box_data">
                                 <h2><%= producto.nombreProd %></h2>
-                                <p><%= producto.descripcion %></p>
                                 <p>Comentarios: <%= producto.comentarios.length %></p>
                             </article>
                         </a>
                     </section>
                 </div>
-            <% })} else {%>
+            <% })}
+            else {%>
                 <h2> No encontramos ningún resultado que coincida con tu búsqueda</h2>
             <% }%>
         </div>

@@ -7,7 +7,7 @@ const usersController = {
     register: function(req, res, next) {
         
         if (req.session.user != undefined) {
-            return res.redirect("/users/login"); //no deberia reditigir a la home o al perfil?
+            return res.redirect("/"); //no deberia reditigir a la home o al perfil?
         } 
         else {
             return res.render('register', {title: "Register"})
@@ -16,7 +16,7 @@ const usersController = {
 
     login: function(req, res, next) {
         if (req.session.user != undefined) {
-            return res.redirect("/");
+            return res.redirect("/users/profile/id/" + result.id);
         } 
         else {
             return res.render('login', {title:"Login"})
@@ -83,6 +83,7 @@ const usersController = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
+            
             let usuario = {
                 mail: form.email,
                 usuario: form.username,

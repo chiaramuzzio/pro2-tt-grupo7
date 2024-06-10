@@ -7,7 +7,7 @@ CREATE TABLE usuarios (
 /* 	Nombre de Columna 	Tipo de Dato 	Restricciones */
 
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    mail 				VARCHAR(250) 	NOT NULL,
+    mail 				VARCHAR(250) 	NOT NULL  UNIQUE,
     usuario 			VARCHAR(250) 	NOT NULL,
     contrasenia 		VARCHAR(250) 	NOT NULL,
     fechaNacimiento 	DATE 			NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE comentarios (
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     productoId			INT				UNSIGNED,
     clienteId			INT				UNSIGNED,
-    comentario 			VARCHAR(250) 	NOT NULL,
+    comentario 			VARCHAR(2500) 	NOT NULL,
     createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
 	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt			timestamp		null,
@@ -104,91 +104,91 @@ values (default, 1, 'Taylor. From the Vault.', 'https://http2.mlstatic.com/D_NQ_
 
     /*SQL comentarios*/
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 1, 5, 'comentario 1');
+values (default, 1, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 1, 1, 'comentario 2');
+values (default, 1, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 1, 3, 'comentario 3');
+values (default, 1, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 2, 5, 'comentario 1');
+values (default, 2, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 2, 1, 'comentario 2');
+values (default, 2, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 2, 3, 'comentario 3');
+values (default, 2, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 3, 5, 'comentario 1');
+values (default, 3, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 3, 1, 'comentario 2');
+values (default, 3, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 3, 3, 'comentario 3');
+values (default, 3, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 4, 5, 'comentario 1');
+values (default, 4, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 4, 1, 'comentario 2');
+values (default, 4, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 4, 3, 'comentario 3');
+values (default, 4, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 5, 5, 'comentario 1');
+values (default, 5, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 5, 1, 'comentario 2');
+values (default, 5, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 5, 3, 'comentario 3');
+values (default, 5, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 6, 5, 'comentario 1');
+values (default, 6, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 6, 1, 'comentario 2');
+values (default, 6, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 6, 3, 'comentario 3');
+values (default, 6, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 7, 5, 'comentario 1');
+values (default, 7, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 7, 1, 'comentario 2');
+values (default, 7, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 7, 3, 'comentario 3');
+values (default, 7, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 8, 5, 'comentario 1');
+values (default, 8, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 8, 1, 'comentario 2');
+values (default, 8, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 8, 3, 'comentario 3');
+values (default, 8, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 9, 5, 'comentario 1');
+values (default, 9, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 9, 1, 'comentario 2');
+values (default, 9, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 9, 3, 'comentario 3');
+values (default, 9, 3, 'Muy caro');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 10, 5, 'comentario 1');
+values (default, 10, 5, 'Muy bueno');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 10, 1, 'comentario 2');
+values (default, 10, 1, 'Lo recomiendo');
 
 insert into comentarios (id, productoId, clienteId, comentario)
-values (default, 10, 3, 'comentario 3');
+values (default, 10, 3, 'Muy caro');
