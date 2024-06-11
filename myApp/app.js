@@ -38,18 +38,17 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
   if (req.cookies.userId != undefined && req.session.user == undefined) {
-      let id = req.cookies.userId; // 4 5 ,6
+      let id = req.cookies.userId;
 
       db.Usuario.findByPk(id)
       .then(function(result) {
-
-        /* que quiero hacer???? */
 
         req.session.user = result;
         res.locals.user = result;
 
         return next(); 
-      }).catch(function(err) {
+      })
+      .catch(function(err) {
         return console.log(err); ; 
       });
   } 

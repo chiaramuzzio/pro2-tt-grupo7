@@ -24,28 +24,26 @@
     <div class="container products-wrapper">
         <div class="row">
             <!-- Show the "ultimos" products -->
-            <% if (!Array.isArray(productos) && productos != null){
-                productos = [productos];
+            <%if (productos && productos.length > 0) {
+                for(let i = 0; i < productos.length; i++) { %>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <section class="product-box">
+                            <a href="/product/id/<%= productos[i].id %>">
+                                <figure class="product-box_image">
+                                    <img class="fotoIndex" src="<%= productos[i].imagenProd %>">
+                                </figure>
+                                <article class="product-box_data">
+                                    <h2><%= productos[i].nombreProd %></h2>
+                                    <p>Comentarios: <%= productos[i].comentarios.length %></p>
+                                </article>
+                            </a>
+                        </section>
+                    </div>
+                <% }
             }
-            if (productos && productos.length > 0) {
-                productos.forEach(function(producto, index) { %>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <section class="product-box">
-                        <a href="/product/id/<%= producto.id %>">
-                            <figure class="product-box_image">
-                                <img class="fotoIndex" src="<%= producto.imagenProd %>">
-                            </figure>
-                            <article class="product-box_data">
-                                <h2><%= producto.nombreProd %></h2>
-                                <p>Comentarios: <%= producto.comentarios.length %></p>
-                            </article>
-                        </a>
-                    </section>
-                </div>
-            <% })}
-            else {%>
+            else { %>
                 <h2> No encontramos ningún resultado que coincida con tu búsqueda</h2>
-            <% }%>
+            <% } %>
         </div>
     </div>
 

@@ -34,7 +34,7 @@ const productController = {
 
     create: function(req, res) {
 
-        if (req.session.user != undefined || req.cookies.userId != undefined) {
+        if (req.session.user != undefined) {
             return res.render('product-add', {title:"Add Product"})
         }
         else {
@@ -93,8 +93,8 @@ const productController = {
                 }
             } 
     
-            if (req.session.user != undefined || req.cookies.userId != undefined) {
-                let id = req.session.user.id || req.cookies.userId;
+            if (req.session.user != undefined) {
+                let id = req.session.user.id;
                 if (form.idUsuario == id) {
                     db.Producto.update(form, filtrado)
                     .then((result) => {
@@ -137,8 +137,8 @@ const productController = {
           }
         }
 
-        if (req.session.user != undefined || req.cookies.userId != undefined) {
-            let id = req.session.user.id || req.cookies.userId;
+        if (req.session.user != undefined) {
+            let id = req.session.user.id;
             if (form.idUsuario == id) {
                 db.Producto.destroy(filtrado)
                 .then((result) => {

@@ -489,6 +489,10 @@ h1, h2, h3{
 .hoverUser:hover{
   color: var(--light-blue);
 }
+
+/* .grupoInput{
+  display: block
+} */
   /*====== Formularios ======*/
 
 .form-label {
@@ -533,6 +537,8 @@ textarea.form-input {
 
 .formPropio{
   padding: 0 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formRegister{

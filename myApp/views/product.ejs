@@ -40,18 +40,17 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% comentarios.forEach(function(comentario, index) { %>
-							<!-- luis dijo que cambie el forEach por for, NO TE OLVIDES PLS!! -->
+						<% for(let i = 0; i < comentarios.length; i++) { %>
 							<article>
-								<img src=<%= comentario.usuario.foto %> alt="">
+								<img src=<%= comentarios[i].usuario.foto %> alt="">
 								<div class="data">
 									<p class="user">
-										<strong> <a href="/users/profile/id/<%= comentario.usuario.id %>"><%= comentario.usuario.usuario %></a> </strong>
-										<%= comentario.comentario %>
+										<strong> <a href="/users/profile/id/<%= comentarios[i].usuario.id %>"><%= comentarios[i].usuario.usuario %></a> </strong>
+										<%= comentarios[i].comentario %>
 									</p>
 								</div>
 							</article>
-						<% }); %>					
+						<% } %>				
 					</section>
 					<form class="form" action="/product/id/<%= productos.id %>" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
