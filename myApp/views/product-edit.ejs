@@ -26,19 +26,19 @@
 				<input type="hidden" name="idUsuario" value="<%= productos.usuario.id %>">
 
 				<label class="form-label"for="nombreProd">Nombre del producto</label><br>
-				<input class="form-input" type="text" id="nombreProd" name="nombreProd" value="<%= locals.old !== undefined && old.nombreProd ? old.nombreProd : productos.nombreProd %>"><br>
+				<input class="form-input" type="text" id="nombreProd" name="nombreProd" value="<%= (locals.old && locals.old.nombreProd !== undefined) ? locals.old.nombreProd : (productos && productos.nombreProd) %>"><br>
 				<% if (locals.errors && errors.nombreProd) { %>
 					<p class="feedback"><%= errors.nombreProd.msg %></p>
 				<% } %>
 				
 				<label class="form-label" for="imagenProd">Imagen</label><br>
-				<input class="form-input file-select" type="text" id="imagen" name="imagenProd" value="<%= locals.old !== undefined && old.imagenProd ? old.imagenProd : productos.imagenProd %>"><br>
+				<input class="form-input file-select" type="text" id="imagen" name="imagenProd" value="<%= (locals.old && locals.old.imagenProd !== undefined) ? locals.old.imagenProd : (productos && productos.imagenProd) %>"><br>
 				<% if (locals.errors && errors.imagenProd) { %>
 					<p class="feedback"><%= errors.imagenProd.msg %></p>
 				<% } %>
 
 				<label class="form-label" for="descripcion">Descripción</label><br>
-				<textarea class="form-input" id="descripcion" name="descripcion" rows="4"><%= locals.old !== undefined && old.descripcion ? old.descripcion : productos.descripcion %></textarea><br>
+				<textarea class="form-input" id="descripcion" name="descripcion" rows="4"><%= (locals.old && locals.old.descripcion !== undefined) ? locals.old.descripcion : (productos && productos.descripcion) %></textarea><br>
 				<% if (locals.errors && errors.descripcion) { %>
 					<p class="feedback"><%= errors.descripcion.msg %></p>
 				<% } %>		 

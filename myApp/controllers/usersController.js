@@ -116,7 +116,7 @@ const usersController = {
             });
         }
         else{
-            res.render('login', {title: "Login", errors: errors.mapped(),  old: req.body });
+            res.render('login', {title: "Login", errors: errors.mapped(),  old: req.body, user: req.session.user});
         }
     },
 
@@ -128,32 +128,33 @@ const usersController = {
 
     usersEdit: function(req, res, next) {
         
-        let errors = validationResult(req);
+        if (req.session.user != undefined) {
+            let id = req.session.user.id;
 
-        if (errors.isEmpty()) {
-            if (req.session.user != undefined) {
-                let id = req.session.user.id;
-
-                db.Usuario.findByPk(id)
-                .then(function(results){
-                    return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
-                })
-                .catch(function(error){
-                    console.log(error);
-                });    
-            }
-            else {
-                return res.redirect("/users/login");
-            }
+            db.Usuario.findByPk(id)
+            .then(function(results){
+                return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
+            })
+            .catch(function(error){
+                console.log(error);
+            });    
         }
         else {
-            return res.render('profile-edit', {title: "Profile Edit", errors: errors.mapped(), old: req.body }); 
+            return res.redirect("/users/login");
         }
 
     },
 
     update: function(req, res) {
-        //que redirija al perfil!
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()) {
+            return res.send("ACA HAY QUE HACER TODO EL UPDATE DE USUARIO (controller Users en el metodo .update si errors.isEmpty) (borrar el res send y hacer todo el desarrollo)")
+        }
+        else {
+            return res.render('profile-edit', {title: "Profile Edit", errors: errors.mapped(), old: req.body }); 
+        }
+        
     }
 };
 

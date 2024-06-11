@@ -57,15 +57,15 @@ let validationsRegister = [
 ]
 
 let validationsEdit = [
-    body('email')
+    body('mail')
     .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
     .isEmail().withMessage('Debe ser un email valido'),
     
-    body('username')
+    body('usuario')
     .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
     
-    body('password')
-    .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail()
+    body('contrasenia')
+    .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail() //chequear lo de si tiene que estar vacio o no (consigna ambigua)
     .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
 ]
 

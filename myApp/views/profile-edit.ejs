@@ -23,41 +23,49 @@
 			</div>
 			<!-- Muestra los "ultimos" productos -->
 			<form class="formPropio formRegister" action="/users/edit" method="POST">
-				<label class="form-label" for="email">Email</label><br>
-				<div class="grupoInput">
-					<input class="form-input" type="email" id="email" name="email" value="<%= locals.old !== undefined && old.email ? old.email : "" %>"><br>
-					<% if (locals.errors && errors.email) { %>
-						<p class="feedback"><%= errors.email.msg %></p><br>
-					  <% } %>
-				</div>
 
-				<label class="form-label" for="username">Usuario</label><br>
+				<label class="form-label" for="mail">Email</label><br>
 				<div class="grupoInput">
-					<input class="form-input" type="text" id="username" name="username" value="<%= locals.old !== undefined && old.username ? old.username : "" %>"><br>
-					<% if (locals.errors && errors.username) { %>
-						<p class="feedback"><%= errors.username.msg %></p><br>
-					  <% } %>
+					<input class="form-input" type="email" id="mail" name="mail" value="<%= (locals.old && locals.old.mail !== undefined) ? locals.old.mail : (user && user.mail) %>"><br>
+					<% if (locals.errors && locals.errors.mail) { %>
+						<p class="feedback"><%= locals.errors.mail.msg %></p><br>
+					<% } %>
 				</div>
-
-				<label class="form-label" for="password">Nueva Contraseña</label><br>
+			
+				<label class="form-label" for="usuario">Usuario</label><br>
 				<div class="grupoInput">
-					<input class="form-input" type="text" id="password" name="password"> <br>
-					<% if (locals.errors && errors.password) { %>
-						<br><p class="feedback"><%= errors.password.msg %></p><br>
-					  <% } %>
+					<input class="form-input" type="text" id="usuario" name="usuario" value="<%= (locals.old && locals.old.usuario !== undefined) ? locals.old.usuario : (user && user.usuario) %>"><br>
+					<% if (locals.errors && locals.errors.usuario) { %>
+						<p class="feedback"><%= locals.errors.usuario.msg %></p><br>
+					<% } %>
 				</div>
-			   
-				<label class="form-label" for="birthdate">Fecha de nacimiento</label><br>
-				<input class="form-input" type="date" id="birthdate" name="birthdate" value="<%= locals.old !== undefined && old.birthdate ? old.birthdate : "" %>"><br>
-			   
-				<label class="form-label" for="document_number">Número de documento</label><br>
-				<input class="form-input" type="number" id="document_number" name="document_number" value="<%= locals.old !== undefined && old.document_number ? old.document_number : "" %>"><br>
-			   
-				<label class="form-label" for="profile_picture">Foto de perfil</label><br>
-				<input class="form-input file-select" type="text" id="profile_picture" value="<%= locals.old !== undefined && old.profile_picture ? old.profile_picture : "" %>" name="profile_picture"><br>
-			   
+			
+				<label class="form-label" for="contrasenia">Nueva Contraseña</label><br>
+				<div class="grupoInput">
+					<input class="form-input" type="text" id="contrasenia" name="contrasenia" value="<%= (locals.old && locals.old.contrasenia !== undefined) ? locals.old.contrasenia : "" %>"><br>
+					<% if (locals.errors && locals.errors.contrasenia) { %>
+						<p class="feedback"><%= locals.errors.contrasenia.msg %></p><br>
+					<% } %>
+				</div>
+			
+				<label class="form-label" for="fechaNacimiento">Fecha de nacimiento</label><br>
+				<input class="form-input" type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= (locals.old && locals.old.fechaNacimiento !== undefined) ? locals.old.fechaNacimiento : (user && user.fechaNacimiento) %>"><br>
+				<% if (locals.errors && locals.errors.fechaNacimiento) { %>
+					<p class="feedback"><%= locals.errors.fechaNacimiento.msg %></p><br>
+				<% } %>
+			
+				<label class="form-label" for="numeroDocumento">Número de documento</label><br>
+				<input class="form-input" type="number" id="numeroDocumento" name="numeroDocumento" value="<%= (locals.old && locals.old.numeroDocumento !== undefined) ? locals.old.numeroDocumento : (user && user.numeroDocumento) %>"><br>
+				<% if (locals.errors && locals.errors.numeroDocumento) { %>
+					<p class="feedback"><%= locals.errors.numeroDocumento.msg %></p><br>
+				<% } %>
+			
+				<label class="form-label" for="foto">Foto de perfil</label><br>
+				<input class="form-input file-select" type="text" id="foto" name="foto" value="<%= (locals.old && locals.old.foto !== undefined) ? ((locals.old.foto == "") ? '/images/users/default.png' : locals.old.foto) : (user && user.foto) %>"><br>
+			
 				<button type="submit" class="buy-now-button botonRegister">Guardar Cambios</button>
 			</form>
+			
 		</div>
 	</div>
 
