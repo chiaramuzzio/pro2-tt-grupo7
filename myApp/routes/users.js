@@ -40,6 +40,19 @@ let validationsRegister = [
     .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
 ]
 
+let validationsEdit = [
+    body('email')
+    .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
+    .isEmail().withMessage('Debe ser un email valido'),
+    
+    body('username')
+    .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
+    
+    body('password')
+    .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail()
+    .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
+]
+
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUser);
 
@@ -49,6 +62,8 @@ router.post('/register', validationsRegister, usersController.store);
 router.get('/profile/id/:id', usersController.profile);
 
 router.get('/edit', usersController.usersEdit);
+router.post('/edit', validationsEdit, usersController.usersEdit);
+
 
 router.post('/logout', usersController.logout);
 

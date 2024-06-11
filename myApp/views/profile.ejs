@@ -22,9 +22,13 @@
             <div class="data-container col-6">
                 <div class="d-flex align-items-center ">
                     <h1 class="main-title"><%= usuario.usuario %>
-                        <a href="/users/edit">
+                        
+                        <% if (id != undefined && id == usuario.id) { %>
+                            <a href="/users/edit">
                             <i class="fas fa-cog"></i>
-                        </a>
+                            </a>
+                        <% } %>
+                        
                     </h1>
                     <a class="followBoton btn mt-3 ml-4" href="">SEGUIR</a>
                 </div>

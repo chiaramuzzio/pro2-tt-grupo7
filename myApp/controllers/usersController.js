@@ -83,7 +83,7 @@ const usersController = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-            
+
             let usuario = {
                 mail: form.email,
                 usuario: form.username,
@@ -122,7 +122,8 @@ const usersController = {
     
         db.Usuario.findByPk(id, criterio)
             .then(function(results){
-                return res.render('profile', {title: `@${results.usuario}`, usuario: results, productos: results.productos, comentarios: results.comentarios.length});
+                // return res.send(id)
+                return res.render('profile', {title: `@${results.usuario}`, usuario: results, productos: results.productos, comentarios: results.comentarios.length, id: req.session.user.id});
             })
             .catch(function(error){
                 console.log(error);
@@ -131,24 +132,32 @@ const usersController = {
 
     usersEdit: function(req, res, next) {
         let id
+        let errors = validationResult(req);
 
-        if (req.session.user != undefined) {
-            id = req.session.user.id;
-        }
-        else if (req.cookies.userId != undefined) {
-            id = req.cookies.userId;
+
+        if (errors.isEmpty()) {
+            if (req.session.user != undefined) {
+                id = req.session.user.id;
+            }
+            else if (req.cookies.userId != undefined) {
+                id = req.cookies.userId;
+            }
+            else {
+                return res.redirect("/users/login");
+            }
+    
+            db.Usuario.findByPk(id)
+            .then(function(results){
+                return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
+            })
+            .catch(function(error){
+                console.log(error);
+            });    
         }
         else {
-            return res.redirect("/users/login");
+            return res.render('profile-edit', {title: "Profile Edit", errors: errors.mapped(), old: req.body }); 
         }
 
-        db.Usuario.findByPk(id)
-        .then(function(results){
-            return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
-        })
-        .catch(function(error){
-            console.log(error);
-        });    
     }
 };
 
