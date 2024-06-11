@@ -574,6 +574,11 @@ textarea.form-input {
   bottom: 0;
 }
 
+.comentarioDeslogueado{
+  size: 300px;
+  color: blue;
+}
+
   /*====== Profile ======*/
 
 .info-usuario{

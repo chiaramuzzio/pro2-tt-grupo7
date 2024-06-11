@@ -52,10 +52,16 @@
 							</article>
 						<% } %>				
 					</section>
+					<% if (locals.user != undefined) { %>
 					<form class="form" action="/product/id/<%= productos.id %>" method="get">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button botonComentario">AGREGAR COMENTARIO</button>
 					</form>
+					<% } else { %>
+                        <div class="comentarioDeslogueado">
+                            <a href="/users/login">Debes iniciar sesión para agregar un comentario.</a>
+                        </div>
+                    <% } %>
 					<hr>
 				</div>
 			</div>

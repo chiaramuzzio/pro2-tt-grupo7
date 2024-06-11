@@ -35,13 +35,17 @@ const usersController = {
 
     register: function(req, res, next) {
         
+        if (errors.isEmpty()) {
         if (req.session.user != undefined) {
             return res.redirect("/users/profile/id/" + req.session.user.id); //no deberia reditigir a la home o al perfil?
         } 
         else {
             return res.render('register', {title: "Register"})
-        }
-    },
+        };
+    }
+    else{
+        res.render('login', {title: "Login", errors: errors.mapped(),  old: req.body, user: req.session.user});
+    }},
 
     store: function(req, res) {
 

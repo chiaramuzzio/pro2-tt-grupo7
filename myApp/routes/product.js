@@ -12,6 +12,11 @@ let validations = [
         .notEmpty().withMessage('El campo Imagen es obligatorio.').bail()
         .isURL().withMessage('El campo Imagen debe ser una URL válida.')
 ]
+let validationsComentario = [
+    body('comentario')
+        .notEmpty().withMessage('El comentario no puede estar vacío.').bail()
+        .isLength({ min: 3 }).withMessage('El comentario debe tener al menos 3 caracteres.')
+];
 
 router.get('/id/:id', productController.index);
 
@@ -22,6 +27,8 @@ router.post('/editProduct', productController.formUpdate);
 router.post('/edit', validations, productController.update);
 
 router.post('/delete', productController.destroy);
+
+
 
 
 module.exports = router;
