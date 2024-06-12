@@ -58,7 +58,7 @@ const usersController = {
                     if (user) {
                         return res.render('register', {
                             title: "Register",
-                            errors: errors.mapped(),
+                            errors:  { email: { msg: 'El correo electrónico ya está registrado.' } },
                             old: req.body
                         });
                     }})
