@@ -154,8 +154,6 @@ const productController = {
         else{
             return res.redirect("/users/login");
         }        
-      }
-}
-
+       }}
 
 module.exports = productController;
