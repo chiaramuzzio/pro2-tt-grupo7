@@ -52,16 +52,6 @@ const usersController = {
 
         if (errors.isEmpty()) {
 
-            db.Usuario.findOne({ where: 
-                { mail: form.email } })
-                .then(user => {
-                    if (user) {
-                        return res.render('register', {
-                            title: "Register",
-                            errors:  { email: { msg: 'El correo electrónico ya está registrado.' } },
-                            old: req.body
-                        });
-                    }})
 
             let usuario = {
                 mail: form.email,

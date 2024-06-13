@@ -28,13 +28,13 @@
 				  <% } %>
 			 
 				<label class="form-label" for="username">Usuario</label><br>
-				<input class="form-input" type="text" id="username" name="username"  value="<%= locals.old !== undefined && old.username ? old.username : "" %>" required><br>
+				<input class="form-input" type="text" id="username" name="username"  value="<%= locals.old !== undefined && old.username ? old.username : "" %>" ><br>
 				<% if (locals.errors && errors.username) { %>
 					<p class="feedback"><%= errors.username.msg %></p>
 				  <% } %>
 			 
 				<label class="form-label" for="password">Contraseña</label><br>
-				<input class="form-input" type="password" id="password" name="password" required><br>
+				<input class="form-input" type="password" id="password" name="password" ><br>
 				<% if (locals.errors && errors.password) { %>
 					<p class="feedback"><%= errors.password.msg %></p>
 				  <% } %>

@@ -46,7 +46,19 @@ let validationsLogin = [
 let validationsRegister = [
     body('email')
     .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
-    .isEmail().withMessage('Debe ser un email valido'),
+    .isEmail().withMessage('Debe ser un email valido').bail()
+    .custom(function(value){
+        return db.Usuario.findOne({where: { mail: value }})
+              .then(function(user){
+                    if(user == undefined){ 
+                        return true;
+                    }
+                    else{
+                        throw new Error ('El email ya existe')
+                    }
+              })
+    }),
+
     
     body('username')
     .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
