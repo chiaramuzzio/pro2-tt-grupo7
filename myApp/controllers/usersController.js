@@ -147,6 +147,7 @@ const usersController = {
         }
 
     },
+    
 
     update: function(req, res) {
         let errors = validationResult(req);

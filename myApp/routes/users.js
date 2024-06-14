@@ -69,9 +69,20 @@ let validationsRegister = [
 ]
 
 let validationsEdit = [
-    body('mail')
+    body('email')
     .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
-    .isEmail().withMessage('Debe ser un email valido'),
+    .isEmail().withMessage('Debe ser un email valido').bail()
+    .custom(function(value){
+        return db.Usuario.findOne({where: { mail: value }})
+              .then(function(user){
+                    if(user == undefined){ 
+                        return true;
+                    }
+                    else{
+                        throw new Error ('El email ya existe')
+                    }
+              })
+    }),
     
     body('usuario')
     .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
@@ -80,6 +91,7 @@ let validationsEdit = [
     .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail() //chequear lo de si tiene que estar vacio o no (consigna ambigua)
     .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
 ]
+
 
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUser);
