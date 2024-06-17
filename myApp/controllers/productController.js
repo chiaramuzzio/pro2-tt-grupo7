@@ -155,7 +155,7 @@ const productController = {
             return res.redirect("/users/login");
         }        
        }
-    },
+    ,
        
     comment: function(req,res) {
         let form = req.body;
@@ -203,6 +203,6 @@ const productController = {
             });   
         }
     }
-    ;
+    };
     
 module.exports = productController;
