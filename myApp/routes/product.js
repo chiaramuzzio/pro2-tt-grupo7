@@ -19,6 +19,7 @@ let validationsComentario = [
 ];
 
 router.get('/id/:id', productController.index);
+router.post('/id/:id', validationsComentario, productController.comment)
 
 router.get('/add', productController.create);
 router.post('/add', validations, productController.store);
@@ -28,7 +29,7 @@ router.post('/edit', validations, productController.update);
 
 router.post('/delete', productController.destroy);
 
-// router.post('/id/:id/comment', validationsComentario, productController.addComment); Ruta comentario (en proceso)
+
 
 
 module.exports = router;

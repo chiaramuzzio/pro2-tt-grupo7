@@ -22,7 +22,7 @@
 			<!-- Muestra los "ultimos" productos -->
 			<form class="formPropio formRegister" action="/users/register" method="post">
 				<label class="form-label" for="email">Email</label><br>
-				<input class="form-input" type="email" id="email" name="email" value="<%= locals.old !== undefined && old.email ? old.email : "" %>"  required><br>
+				<input class="form-input" type="email" id="email" name="email" value="<%= locals.old !== undefined && old.email ? old.email : "" %>"  ><br>
 				<% if (locals.errors && errors.email) { %>
 					<p class="feedback"><%= errors.email.msg %></p>
 				  <% } %>
