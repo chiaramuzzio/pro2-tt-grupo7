@@ -37,7 +37,7 @@ const usersController = {
         
      
         if (req.session.user != undefined) {
-            return res.redirect("/users/profile/id/" + req.session.user.id); //no deberia reditigir a la home o al perfil?
+            return res.redirect("/users/profile/id/" + req.session.user.id);
         } 
         else {
             return res.render('register', {title: "Register"})
@@ -78,7 +78,7 @@ const usersController = {
 
     login: function(req, res, next) {
         if (req.session.user != undefined) {
-            return res.redirect("/users/profile/id/" + result.id);
+            return res.redirect("/users/profile/id/" + req.session.user.id);
         } 
         else {
             return res.render('login', {title:"Login"})
@@ -151,11 +151,37 @@ const usersController = {
 
     update: function(req, res) {
         let errors = validationResult(req);
+        let form = req.body;
 
         if (errors.isEmpty()) {
-            return res.send("ACA HAY QUE HACER TODO EL UPDATE DE USUARIO (controller Users en el metodo .update si errors.isEmpty) (borrar el res send y hacer todo el desarrollo)")
-        }
+
+            let filtrado = {
+                where: {
+                id: req.session.user.id
+                }
+            } 
+
+            let usuario = {
+                mail: form.mail,
+                usuario: form.usuario,
+                contrasenia: bcrypt.hashSync(form.contrasenia, 10),
+                fechaNacimiento: form.fechaNacimiento,
+                numeroDocumento: form.numeroDocumento,
+                foto: form.foto || "/images/users/default.png"
+            }
+    
+            db.Usuario.update(usuario, filtrado)
+            .then((result) => {
+                return res.redirect("/users/login")
+            })
+            .catch((err) => {
+                return console.log(err);
+            });       
+        } 
+            // return res.send("ACA HAY QUE HACER TODO EL UPDATE DE USUARIO (controller Users en el metodo .update si errors.isEmpty) (borrar el res send y hacer todo el desarrollo)")
+        
         else {
+            // return res.send(errors.mapped())
             return res.render('profile-edit', {title: "Profile Edit", errors: errors.mapped(), old: req.body }); 
         }
         

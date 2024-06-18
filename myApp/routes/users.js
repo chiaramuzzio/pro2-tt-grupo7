@@ -4,6 +4,7 @@ const usersController = require("../controllers/usersController");
 const { body } = require('express-validator');
 const db = require('../database/models');
 const bcrypt = require("bcryptjs");
+const session = require('express-session')
 
 
 let validationsLogin = [
@@ -69,26 +70,27 @@ let validationsRegister = [
 ]
 
 let validationsEdit = [
-    body('email')
+    body('mail')
     .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
-    .isEmail().withMessage('Debe ser un email valido').bail()
-    .custom(function(value){
-        return db.Usuario.findOne({where: { mail: value }})
-              .then(function(user){
-                    if(user == undefined){ 
-                        return true;
-                    }
-                    else{
-                        throw new Error ('El email ya existe')
-                    }
-              })
-    }),
+    .isEmail().withMessage('Debe ser un email valido').bail(),
+    // .custom(function(value){
+    //     return db.Usuario.findOne({where: { mail: value }})
+    //           .then(function(user){
+    //                 if(user == undefined){ 
+    //                     return true;
+    //                 }
+    //                 else{
+    //                     throw new Error ('El email ya existe')
+    //                 }
+    //           })
+    // }),
+
     
     body('usuario')
     .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
     
     body('contrasenia')
-    .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail() //chequear lo de si tiene que estar vacio o no (consigna ambigua)
+    .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail()
     .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
 ]
 

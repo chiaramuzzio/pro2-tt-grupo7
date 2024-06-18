@@ -13,7 +13,8 @@ const productController = {
               {association: "comentarios", 
                 include: [{association: 'usuario'} 
                 ]}
-            ]
+            ],
+            order: [[{model: db.Comentario, as: 'comentarios'}, 'createdAt', 'DESC']]
         }
 
         let condition = false;
@@ -167,6 +168,7 @@ const productController = {
                 productoId: req.params.id,
                 comentario: form.comentario
             }
+            
     
             db.Comentario.create(comentario)
             .then((result) => {
@@ -187,9 +189,7 @@ const productController = {
                     include: [{association: 'usuario'} 
                     ]}
                 ],
-                order: [
-                    ['createdAt', 'DESC'] 
-                ]
+                order: [[{model: db.Comentario, as: 'comentarios'}, 'createdAt', 'DESC']]
             }
     
             db.Producto.findByPk(id, criterio)
