@@ -186,6 +186,9 @@ const productController = {
                     {association: "comentarios", 
                     include: [{association: 'usuario'} 
                     ]}
+                ],
+                order: [
+                    ['createdAt', 'DESC'] 
                 ]
             }
     
