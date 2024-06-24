@@ -6,19 +6,18 @@ const { update } = require('./productController');
 
 const usersController = {
 
-    profile: function(req, res, next) {
+    profile: function (req, res, next) {
         let id = req.params.id;
-
         let criterio = {
             include: [
-                {association: "productos"},
-                {association: "comentarios"}
+                { association: "productos" },
+                { association: "comentarios" }
             ],
-            order: [[{model: db.Producto, as: 'productos'}, 'createdAt', 'DESC']]
+            order: [[{ model: db.Producto, as: 'productos' }, 'createdAt', 'DESC']]
         }
-    
+
         db.Usuario.findByPk(id, criterio)
-            .then(function(results){
+            .then(function (results) {
 
                 let condition = false;
 
@@ -26,33 +25,29 @@ const usersController = {
                     condition = true;
                 }
 
-                return res.render('profile', {title: `@${results.usuario}`, usuario: results, productos: results.productos, comentarios: results.comentarios.length, condition: condition});
+                return res.render('profile', { title: `@${results.usuario}`, usuario: results, productos: results.productos, comentarios: results.comentarios.length, condition: condition });
             })
-            .catch(function(error){
+            .catch(function (error) {
                 console.log(error);
             });
     },
 
-    register: function(req, res, next) {
-        
-     
+    register: function (req, res, next) {
+
         if (req.session.user != undefined) {
             return res.redirect("/users/profile/id/" + req.session.user.id);
-        } 
+        }
         else {
-            return res.render('register', {title: "Register"})
+            return res.render('register', { title: "Register" })
         };
     },
 
 
-    store: function(req, res) {
-
+    store: function (req, res) {
         let form = req.body;
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-
-
             let usuario = {
                 mail: form.email,
                 usuario: form.username,
@@ -61,95 +56,92 @@ const usersController = {
                 numeroDocumento: form.document_number,
                 foto: form.profile_picture || "/images/users/default.png"
             }
-    
+
             db.Usuario.create(usuario)
-            .then((result) => {
-                return res.redirect("/users/login")
-            })
-            .catch((err) => {
-                return console.log(err);
-            });       
-        } 
+                .then((result) => {
+                    return res.redirect("/users/login")
+                })
+                .catch((err) => {
+                    return console.log(err);
+                });
+        }
         else {
-            return res.render('Register', {title: "Register", errors: errors.mapped(), old: req.body });        
+            return res.render('Register', { title: "Register", errors: errors.mapped(), old: req.body });
         }
 
     },
 
-    login: function(req, res, next) {
+    login: function (req, res, next) {
         if (req.session.user != undefined) {
             return res.redirect("/users/profile/id/" + req.session.user.id);
-        } 
+        }
         else {
-            return res.render('login', {title:"Login"})
+            return res.render('login', { title: "Login" })
         }
     },
 
-    loginUser: function(req, res, next) {
-        // console.log(req.body)
-
+    loginUser: function (req, res, next) {
         let form = req.body;
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-            
             let filtro = {
                 where: [
-                {mail: form.email}
+                    { mail: form.email }
                 ]
             }
 
             db.Usuario.findOne(filtro)
-            .then((result) => {
-                if (result != null) {
-                    
-                    req.session.user = result;
-                    if (form.remember != undefined) {
-                        res.cookie("userId", result.id, {maxAge: 1000 * 60 * 35})
+                .then((result) => {
+                    if (result != null) {
+
+                        req.session.user = result;
+                        if (form.remember != undefined) {
+                            res.cookie("userId", result.id, { maxAge: 1000 * 60 * 35 })
+                        }
+                        return res.redirect("/users/profile/id/" + result.id);
                     }
-                    return res.redirect("/users/profile/id/" + result.id);
-                } 
-                else {
-                    return res.redirect("/users/login");
-                }
-    
-            })
-            .catch((err) => {
-                return console.log(err);
-            });
+                    else {
+                        return res.redirect("/users/login");
+                    }
+
+                })
+                .catch((err) => {
+                    return console.log(err);
+                });
         }
-        else{
-            res.render('login', {title: "Login", errors: errors.mapped(),  old: req.body, user: req.session.user});
+        else {
+            res.render('login', { title: "Login", errors: errors.mapped(), old: req.body, user: req.session.user });
         }
     },
 
-    logout: function(req, res, next) {
+    logout: function (req, res, next) {
         req.session.destroy()
         res.clearCookie("userId")
         return res.redirect("/");
     },
 
-    usersEdit: function(req, res, next) {
-        
+    usersEdit: function (req, res, next) {
+
         if (req.session.user != undefined) {
             let id = req.session.user.id;
 
             db.Usuario.findByPk(id)
-            .then(function(results){
-                return res.render('profile-edit', {title: 'Profile Edit', usuario: results});
-            })
-            .catch(function(error){
-                console.log(error);
-            });    
+                .then(function (results) {
+                    return res.render('profile-edit', { title: 'Profile Edit', usuario: results });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
         else {
             return res.redirect("/users/login");
         }
 
     },
-    
 
-    update: function(req, res) {
+
+    update: function (req, res) {
         let errors = validationResult(req);
         let form = req.body;
 
@@ -157,10 +149,9 @@ const usersController = {
 
             let filtrado = {
                 where: {
-                id: req.session.user.id
+                    id: req.session.user.id
                 }
-            } 
-
+            }
             let usuario = {
                 mail: form.mail,
                 usuario: form.usuario,
@@ -169,22 +160,18 @@ const usersController = {
                 numeroDocumento: form.numeroDocumento,
                 foto: form.foto || "/images/users/default.png"
             }
-    
+
             db.Usuario.update(usuario, filtrado)
-            .then((result) => {
-                return res.redirect("/users/login")
-            })
-            .catch((err) => {
-                return console.log(err);
-            });       
-        } 
-            // return res.send("ACA HAY QUE HACER TODO EL UPDATE DE USUARIO (controller Users en el metodo .update si errors.isEmpty) (borrar el res send y hacer todo el desarrollo)")
-        
-        else {
-            // return res.send(errors.mapped())
-            return res.render('profile-edit', {title: "Profile Edit", errors: errors.mapped(), old: req.body }); 
+                .then((result) => {
+                    return res.redirect("/users/login")
+                })
+                .catch((err) => {
+                    return console.log(err);
+                });
         }
-        
+        else {
+            return res.render('profile-edit', { title: "Profile Edit", errors: errors.mapped(), old: req.body });
+        }
     }
 };
 
