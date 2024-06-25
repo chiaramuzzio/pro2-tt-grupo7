@@ -6,7 +6,7 @@ const db = require('../database/models');
 const bcrypt = require("bcryptjs");
 const session = require('express-session')
 
-
+//VALIDACIONES
 let validationsLogin = [
     body('email')
         .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
@@ -69,10 +69,6 @@ let validationsRegister = [
 ]
 
 let validationsEdit = [
-    body('mail')
-        .notEmpty().withMessage('El campo Mail es obligatorio.').bail()
-        .isEmail().withMessage('Debe ser un email valido').bail(),
-
     body('usuario')
         .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
 
@@ -81,7 +77,7 @@ let validationsEdit = [
         .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
 ]
 
-
+//RUTAS
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUser);
 
@@ -91,7 +87,7 @@ router.post('/register', validationsRegister, usersController.store);
 router.get('/profile/id/:id', usersController.profile);
 
 router.get('/edit', usersController.usersEdit);
-router.post('/edit', validationsEdit, usersController.update); //validaciones no van a funcar hasta que hagan el .update
+router.post('/edit', validationsEdit, usersController.update);
 
 router.post('/logout', usersController.logout);
 

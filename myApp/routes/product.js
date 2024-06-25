@@ -3,6 +3,7 @@ var router = express.Router();
 const productController = require("../controllers/productController");
 const { body } = require('express-validator');
 
+//VALIDACIONES
 let validations = [
     body('nombreProd')
         .notEmpty().withMessage('El campo Nombre del Producto es obligatorio.'),
@@ -12,12 +13,14 @@ let validations = [
         .notEmpty().withMessage('El campo Imagen es obligatorio.').bail()
         .isURL().withMessage('El campo Imagen debe ser una URL válida.')
 ]
+
 let validationsComentario = [
     body('comentario')
         .notEmpty().withMessage('El comentario no puede estar vacío.').bail()
         .isLength({ min: 3 }).withMessage('El comentario debe tener al menos 3 caracteres.')
 ];
 
+//RUTAS
 router.get('/id/:id', productController.index);
 router.post('/id/:id', validationsComentario, productController.comment)
 
@@ -28,8 +31,5 @@ router.post('/editProduct', productController.formUpdate);
 router.post('/edit', validations, productController.update);
 
 router.post('/delete', productController.destroy);
-
-
-
 
 module.exports = router;

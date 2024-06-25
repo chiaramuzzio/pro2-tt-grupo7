@@ -4,60 +4,53 @@
 
 <%- include("./partials/head") %>
 
-	<body>
-		<!-- Header -->
-		<% if (locals.user !=undefined) { %>
-			<%- include("./partials/headerLogueado") %>
-				<% } else { %>
-					<%- include("./partials/header") %>
-						<% } %>
-							<!-- Header -->
+<body>
+	<!-- Header -->
+	<% if (locals.user !=undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
+	<!-- Header -->
 
-							<!-- Banner -->
-							<div class="banner">
-								<img src="/images/users/banner.png">
-							</div>
-							<!-- /Banner -->
+	<!-- Banner -->
+	<div class="banner">
+		<img src="/images/users/banner.png">
+	</div>
+	<!-- /Banner -->
 
-							<!-- Novedades -->
-							<div class="container products-wrapper">
-								<div class="row">
-									<div class="col-12">
-										<h2 class="products-title">Novedades</h2>
-									</div>
-									<% for(let i=0; i < productos.length; i++) { %>
-										<div class="col-12 col-sm-6 col-lg-3">
-											<section class="product-box">
-												<a href="/product/id/<%= productos[i].id %>">
-													<figure class="product-box_image">
-														<img class="fotoIndex" src=<%=productos[i].imagenProd %>>
-													</figure>
-													<article class="product-box_data">
-														<h2>
-															<%= productos[i].nombreProd %>
-														</h2>
-														<p>
-															<%= productos[i].descripcion %>
-														</p>
-														<p>Comentarios: <%= productos[i].comentarios.length %>
-														</p>
-														<p>Subido por: <a
-																href="/users/profile/id/<%= productos[i].usuario.id %>">
-																<%= productos[i].usuario.usuario %>
-															</a></p>
-													</article>
-												</a>
-											</section>
-										</div>
-										<% } %>
-								</div>
-							</div>
-							<!-- /Novedades -->
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Novedades</h2>
+			</div>
 
-							<!-- footer -->
-							<%- include("./partials/footer") %>
-								<!-- /footer -->
+			<% for(let i=0; i < productos.length; i++) { %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/product/id/<%= productos[i].id %>">
+						<figure class="product-box_image">
+							<img class="fotoIndex" src=<%=productos[i].imagenProd %>>
+						</figure>
+						<article class="product-box_data">
+							<h2> <%= productos[i].nombreProd %> </h2>
+							<p> <%= productos[i].descripcion %> </p>
+							<p>Comentarios: <%= productos[i].comentarios.length %> </p>
+							<p>Subido por: <a href="/users/profile/id/<%= productos[i].usuario.id %>"><%= productos[i].usuario.usuario %></a></p>
+						</article>
+						</a>
+					</section>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<!-- /Novedades -->
 
-	</body>
+	<!-- footer -->
+	<%- include("./partials/footer") %>
+	<!-- /footer -->
+
+</body>
 
 </html>

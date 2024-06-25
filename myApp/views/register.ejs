@@ -4,99 +4,80 @@
 
 <%- include("./partials/head") %>
 
-	<body>
-		<!-- Header -->
-		<% if (locals.user !=undefined) { %>
-			<%- include("./partials/headerLogueado") %>
-				<% } else { %>
-					<%- include("./partials/header") %>
-						<% } %>
-							<!-- /Header -->
+<body>
+	<!-- Header -->
+	<% if (locals.user !=undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
+	<!-- /Header -->
 
-							<!-- Novedades -->
-							<div class="container products-wrapper">
-								<div class="row">
-									<div class="col-12">
-										<h2 class="products-title">Registrate</h2>
-									</div>
-									<!-- Muestra los "ultimos" productos -->
-									<form class="formPropio formRegister" action="/users/register" method="post">
-										<label class="form-label" for="email">Email</label><br>
-										<input class="form-input" type="email" id="email" name="email"
-											value="<%= locals.old !== undefined && old.email ? old.email : "" %>"><br>
-										<% if (locals.errors && errors.email) { %>
-											<p class="feedback">
-												<%= errors.email.msg %>
-											</p>
-											<% } %>
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Registrate</h2>
+			</div>
+			<!-- Muestra los "ultimos" productos -->
+			<form class="formPropio formRegister" action="/users/register" method="post">
+				<label class="form-label" for="email">Email</label><br>
+				<input class="form-input" type="email" id="email" name="email"
+					value="<%= locals.old !== undefined && old.email ? old.email : "" %>"><br>
+				<% if (locals.errors && errors.email) { %>
+					<p class="feedback">
+						<%= errors.email.msg %>
+					</p>
+				<% } %>
 
-												<label class="form-label" for="username">Usuario</label><br>
-												<input class="form-input" type="text" id="username" name="username"
-													value="<%= locals.old !== undefined && old.username ? old.username : "" %>"><br>
-												<% if (locals.errors && errors.username) { %>
-													<p class="feedback">
-														<%= errors.username.msg %>
-													</p>
-													<% } %>
+				<label class="form-label" for="username">Usuario</label><br>
+				<input class="form-input" type="text" id="username" name="username"
+					value="<%= locals.old !== undefined && old.username ? old.username : "" %>"><br>
+				<% if (locals.errors && errors.username) { %>
+					<p class="feedback">
+						<%= errors.username.msg %>
+					</p>
+				<% } %>
 
-														<label class="form-label" for="password">Contraseña</label><br>
-														<input class="form-input" type="password" id="password"
-															name="password"><br>
-														<% if (locals.errors && errors.password) { %>
-															<p class="feedback">
-																<%= errors.password.msg %>
-															</p>
-															<% } %>
+				<label class="form-label" for="password">Contraseña</label><br>
+				<input class="form-input" type="password" id="password" name="password"
+					value="<%= locals.old !== undefined && old.password ? old.password : "" %>"><br>
+				<% if (locals.errors && errors.password) { %>
+					<p class="feedback"> <%= errors.password.msg %> </p>
+				<% } %>
 
-																<label class="form-label" for="birthdate">Fecha de
-																	nacimiento</label><br>
-																<input class="form-input" type="date" id="birthdate"
-																	name="birthdate"><br>
-																<% if (locals.errors && errors.birthdate) { %>
-																	<p class="feedback">
-																		<%= errors.birthdate.msg %>
-																	</p>
-																	<% } %>
+				<label class="form-label" for="birthdate">Fecha de nacimiento</label><br>
+				<input class="form-input" type="date" id="birthdate" name="birthdate"
+					value="<%= locals.old !== undefined && old.birthdate ? old.birthdate : "" %>"><br>
+				<% if (locals.errors && errors.birthdate) { %>
+					<p class="feedback"> <%= errors.birthdate.msg %> </p>
+				<% } %>
 
-																		<label class="form-label"
-																			for="document_number">Número de
-																			documento</label><br>
-																		<input class="form-input" type="number"
-																			id="document_number"
-																			name="document_number"><br>
-																		<% if (locals.errors && errors.document_number)
-																			{ %>
-																			<p class="feedback">
-																				<%= errors.document_numbermsg %>
-																			</p>
-																			<% } %>
+				<label class="form-label" for="document_number">Número de documento</label><br>
+				<input class="form-input" type="number" id="document_number" name="document_number"
+					value="<%= locals.old !== undefined && old.document_number ? old.document_number : "" %>"><br>
+				<% if (locals.errors && errors.document_number) { %>
+					<p class="feedback"> <%= errors.document_numbermsg %></p>
+				<% } %>
 
-																				<label class="form-label"
-																					for="profile_picture">Foto de
-																					perfil</label><br>
-																				<input class="form-input" type="text"
-																					id="profile_picture"
-																					name="profile_picture"><br>
-																				<% if (locals.errors &&
-																					errors.profile_picture) { %>
-																					<p class="feedback">
-																						<%= errors.profile_picture.msg
-																							%>
-																					</p>
-																					<% } %>
+				<label class="form-label" for="profile_picture">Foto de perfil</label><br>
+				<input class="form-input" type="text" id="profile_picture" name="profile_picture"
+					value="<%= locals.old !== undefined && old.profile_picture ? old.profile_picture : "" %>"><br>
+				<% if (locals.errors && errors.profile_picture) { %>
+					<p class="feedback"> <%= errors.profile_picture.msg %> </p>
+				<% } %>
 
-																						<button type="submit"
-																							class="buy-now-button botonRegister">Registrarse</button>
-									</form>
-								</div>
-							</div>
+				<button type="submit" class="buy-now-button botonRegister">Registrarse</button>
+			</form>
+		</div>
+	</div>
 
 
 
-							<!-- footer -->
-							<%- include("./partials/footer") %>
+<!-- footer -->
+	<%- include("./partials/footer") %>
+<!-- /footer -->
 
-								<!-- /footer -->
-	</body>
+</body>
 
 </html>

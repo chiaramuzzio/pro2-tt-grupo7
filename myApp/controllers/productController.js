@@ -59,20 +59,25 @@ const productController = {
     },
 
     formUpdate: function (req, res) {
-        let form = req.body;
-        let criterio = {
-            include: [
-                { association: "usuario" }
-            ]
-        }
+        if (req.session.user != undefined){
+            let form = req.body;
+            let criterio = {
+                include: [
+                    { association: "usuario" }
+                ]
+            }
 
-        db.Producto.findByPk(form.id, criterio)
-            .then(function (results) {
-                return res.render('product-edit', { title: `Editar el producto ${results.nombreProd}`, productos: results });
-            })
-            .catch((err) => {
-                return console.log(err);
-            });
+            db.Producto.findByPk(form.id, criterio)
+                .then(function (results) {
+                    return res.render('product-edit', { title: `Editar el producto ${results.nombreProd}`, productos: results });
+                })
+                .catch((err) => {
+                    return console.log(err);
+                });
+        }
+        else{
+            return res.redirect("/users/login");
+        }
 
     },
 
@@ -126,22 +131,34 @@ const productController = {
 
     destroy: function (req, res) {
         let form = req.body;
+        let idProducto = form.id;
         let filtrado = {
             where: {
-                id: form.id
+                id: idProducto
+            }
+        }
+        let filtradoComentario = {
+            where: {
+                productoId: idProducto
             }
         }
 
         if (req.session.user != undefined) {
             let id = req.session.user.id;
             if (form.idUsuario == id) {
-                db.Producto.destroy(filtrado)
+                db.Comentario.destroy(filtradoComentario)
+                .then((result) => {
+                    db.Producto.destroy(filtrado)
                     .then((result) => {
                         return res.redirect("/");
                     })
                     .catch((err) => {
                         return console.log(err);
                     });
+                })
+                .catch((err) => {
+                    return console.log(err);
+                });
             }
             else {
                 return res.redirect("/users/profile/id/" + id);

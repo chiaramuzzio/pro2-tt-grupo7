@@ -2,10 +2,8 @@ const db = require('../database/models');
 const op = db.Sequelize.Op;
 const bcrypt = require("bcryptjs");
 const { validationResult } = require('express-validator');
-const { update } = require('./productController');
 
 const usersController = {
-
     profile: function (req, res, next) {
         let id = req.params.id;
         let criterio = {
@@ -41,7 +39,6 @@ const usersController = {
             return res.render('register', { title: "Register" })
         };
     },
-
 
     store: function (req, res) {
         let form = req.body;
@@ -139,7 +136,6 @@ const usersController = {
         }
 
     },
-
 
     update: function (req, res) {
         let errors = validationResult(req);
