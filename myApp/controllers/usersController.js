@@ -148,17 +148,26 @@ const usersController = {
                     id: req.session.user.id
                 }
             }
+
             let usuario = {
-                mail: form.mail,
                 usuario: form.usuario,
-                contrasenia: bcrypt.hashSync(form.contrasenia, 10),
                 fechaNacimiento: form.fechaNacimiento,
                 numeroDocumento: form.numeroDocumento,
                 foto: form.foto || "/images/users/default.png"
             }
 
+            if (form.contrasenia && !bcrypt.compareSync(form.contrasenia, req.session.user.contrasenia) ) {
+                usuario.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
+                req.session.user.contrasenia = usuario.contrasenia;
+            }
+
             db.Usuario.update(usuario, filtrado)
                 .then((result) => {
+                    req.session.user.usuario = usuario.usuario;
+                    req.session.user.fechaNacimiento = usuario.fechaNacimiento;
+                    req.session.user.numeroDocumento = usuario.numeroDocumento;
+                    req.session.user.foto = usuario.foto;
+
                     return res.redirect("/users/login")
                 })
                 .catch((err) => {

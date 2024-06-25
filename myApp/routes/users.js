@@ -73,9 +73,13 @@ let validationsEdit = [
         .notEmpty().withMessage('Por favor, introduzca un nombre de usuario'),
 
     body('contrasenia')
-        .notEmpty().withMessage('El campo Contraseña es obligatorio.').bail()
-        .isLength({ min: 4 }).withMessage('La contraseña debe tener más de 4 caracteres')
-]
+    .custom(function (contrasenia) {
+        if (contrasenia && contrasenia.length < 4) {
+            throw new Error('La contraseña debe tener más de 4 caracteres')
+        }
+        return true
+    })
+];
 
 //RUTAS
 router.get('/login', usersController.login);
